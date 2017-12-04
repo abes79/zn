@@ -10,8 +10,8 @@ import { AppService } from './../app.service';
 
 export class LoginComponent {
 
-  userLogin: string = 'login';
-  userPassword: string = 'hasło';
+  userLogin: string = 'admin';
+  userPassword: string = 'admin';
 
   constructor(private router: Router, private service: AppService) { }
 

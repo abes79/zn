@@ -8,13 +8,15 @@ import { AppService } from './app.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import { OsobyComponent } from './main/osoby/osoby.component';
 
 
 @NgModule({
   declarations: [
       AppComponent,
       LoginComponent,
-      MainComponent
+      MainComponent,
+      OsobyComponent
   ],
   imports: [
       BrowserModule,
