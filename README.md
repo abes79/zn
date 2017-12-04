@@ -1,4 +1,4 @@
-ZN test
+ZN test dev
 =======
 
 # Zntest
