@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, Routes, RouterModule, RouterStateSnapshot } from '@angular/router';
+import { Router, Routes, RouterModule } from '@angular/router';
 
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
@@ -13,13 +13,13 @@ export class AuthGuard   {
 
   constructor(private router: Router, private service: AppService) { }
 
-    canActivate(state: RouterStateSnapshot) {
+    canActivate() {
       
       if (this.service.getIsUserLogin()) {
         console.log(this.service.getIsUserLogin());
             return true;
         }
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        this.router.navigate(['/login']);
         return false;
     }
 }
