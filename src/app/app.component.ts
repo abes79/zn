@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 
 export class AppComponent {
     title = 'Zn';
-    testText: string = 'test';
-    connectType: number = 1;
     sqlQuerySelect: string = "SELECT id, name, email FROM testowa";
     sqlQueryInsert: string = "INSERT INTO `testowa` (`name`,`email`) VALUES ('Lider','brak')";
     dataAray: any = [];
