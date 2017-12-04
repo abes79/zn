@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AppComponent {
-    title = 'Zn';
+    title: string = 'Zn';
     sqlQuerySelect: string = "SELECT id, name, email FROM testowa";
     sqlQueryInsert: string = "INSERT INTO `testowa` (`name`,`email`) VALUES ('Lider','brak')";
     dataAray: any = [];

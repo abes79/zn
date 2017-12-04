@@ -1,23 +1,22 @@
-﻿import { Injectable } from '@angular/core';
-import { Router, Routes, RouterModule, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router, Routes, RouterModule, RouterStateSnapshot } from '@angular/router';
 
+import { AppService } from './app.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { MainComponent } from './main/main.component';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard   {
 
-    constructor(private router: Router) { }
+  loged: boolean = true;
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // test na dostęp isLoggedIn() 
+  constructor(private router: Router, private service: AppService) { }
 
-        
-        
-        // ----------------------
-        if (true) {
-            console.log('canActivate');
+    canActivate(state: RouterStateSnapshot) {
+      
+      if (this.service.getIsUserLogin()) {
+        console.log(this.service.getIsUserLogin());
             return true;
         }
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
@@ -26,7 +25,7 @@ export class AuthGuard implements CanActivate {
 }
 
 const appRoutes: Routes = [
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', component: MainComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', redirectTo: '/login', pathMatch: 'full' }

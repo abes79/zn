@@ -1,5 +1,20 @@
-﻿<h2>
-  login works!
+<h2>
+  Zaloguj się.
 </h2>
 <br />
-<a href="./home">Go home</a>
+
+<form (submit)="loginUser()">
+  <div class="login">
+    <label>Login</label>
+    <input type="text" [(ngModel)]="userLogin" name="login" value="" />
+    <label>Hasło</label>
+    <input type="password" [(ngModel)]="userPassword" name="hasło" value="" />
+    <input type="submit" value="Login" />
+  </div>
+</form>
+
+
+
+
+<a href="">Go home</a>
+

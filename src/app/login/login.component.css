@@ -1,0 +1,21 @@
+h2 {
+  color: #ff6a00;
+}
+
+.login {
+  height:150px;
+  width:190px;
+  margin:auto;
+  border:2px #ccc solid;
+  padding:10px;
+}
+
+  .login input {
+    padding: 5px;
+    margin: 5px;
+    border: 2px #ccc solid;
+  }
+
+input[type="password"] {
+  -webkit-text-security: disc;
+}

@@ -1,18 +1,20 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/Forms';
 
+import { routing, AuthGuard } from './app.routing';
+import { AppService } from './app.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { routing, AuthGuard } from './app.routing';
+import { MainComponent } from './main/main.component';
+
 
 @NgModule({
   declarations: [
       AppComponent,
       LoginComponent,
-      HomeComponent
+      MainComponent
   ],
   imports: [
       BrowserModule,
@@ -21,7 +23,8 @@ import { routing, AuthGuard } from './app.routing';
       routing
   ],
   providers: [
-      AuthGuard
+    AuthGuard,
+    AppService
   ],
   bootstrap: [AppComponent]
 })
