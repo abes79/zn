@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class AppComponent {
     title: string = 'Zn';
-    sqlQuerySelect: string = "SELECT id, name, email FROM testowa";
+    //sqlQuerySelect: string = "SELECT * FROM testowa LIMIT 0, 5";
+    sqlQuerySelect: string = "SELECT * FROM testowa";
     sqlQueryInsert: string = "INSERT INTO `testowa` (`name`,`email`) VALUES ('Lider','brak')";
     dataAray: any = [];
 
@@ -19,9 +20,9 @@ export class AppComponent {
     }
 
     selectSql() {
-        let toPost: string = '{ "sqlRequest" : "0", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
+        let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
-        let _url: string = 'http://192.168.0.150/db_sql.php';
+        let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
         this._http.post(_url, jsonPost
         ).subscribe((data) => {this.dataAray = data;
             console.log(data)
@@ -30,9 +31,9 @@ export class AppComponent {
     }
 
     insertSql() {
-        let toPost: string = '{ "sqlRequest" : "1", "sqlQuery" : "' + this.sqlQueryInsert + '" }';
+        let toPost: string = '{ "sqlRequest" : "11", "sqlQuery" : "' + this.sqlQueryInsert + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
-        let _url: string = 'http://192.168.0.150/db_sql.php';
+        let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
         this._http.post(_url, jsonPost
         ).subscribe((data) => {this.dataAray = data; 
             console.log(data)
