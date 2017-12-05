@@ -9,16 +9,13 @@ import { MainComponent } from './main/main.component';
 @Injectable()
 export class AuthGuard   {
 
-  loged: boolean = true;
-
   constructor(private router: Router, private service: AppService) { }
 
     canActivate() {
       
       if (this.service.getIsUserLogin()) {
-        console.log(this.service.getIsUserLogin());
-            return true;
-        }
+        return true;
+      }
         this.router.navigate(['/login']);
         return false;
     }

@@ -1,3 +1,18 @@
+h1 {
+  display: inline;
+  vertical-align: middle;
+  color: #606060;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
+}
+
+img {
+  vertical-align: middle;
+}
+
+.title {
+  text-align: center;
+}
+
 h2 {
   color: #ff6a00;
   text-align: center;
@@ -11,7 +26,7 @@ h2 {
   padding:10px;
 }
 
-  .login input {
+.login input {
     padding: 5px;
     margin: 5px;
     border: 2px #ccc solid;

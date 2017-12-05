@@ -1,3 +1,30 @@
-<p>
-  osoby works!
-</p>
+<br />
+<div class="table-contener">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>EMAIL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataAray">
+        <td>{{data.id}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br />
+<input type="text" [(ngModel)]="sqlQueryInsert" name="dane" value="" />
+
+<p>{{sqlQueryInsert}}</p>
+
+<div class="button-contener">
+  <button class="button green" (click)="selectSql()"><span>Wyślij Select</span></button>
+  <button class="button red" (click)="insertSql()"><span>Wyślij Insert</span></button>
+</div>
+<br />
