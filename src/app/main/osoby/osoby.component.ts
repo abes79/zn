@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./osoby.component.css']
 })
 export class OsobyComponent implements OnInit {
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private service: AppService) { }
   ngOnInit() {
   }
 

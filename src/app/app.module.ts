@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { OsobyComponent } from './main/osoby/osoby.component';
+import { ObiektyComponent } from './main/obiekty/obiekty.component';
+import { AlertComponent } from './main/alert/alert.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { OsobyComponent } from './main/osoby/osoby.component';
       AppComponent,
       LoginComponent,
       MainComponent,
-      OsobyComponent
+      OsobyComponent,
+      ObiektyComponent,
+      AlertComponent
   ],
   imports: [
       BrowserModule,

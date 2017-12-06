@@ -11,8 +11,8 @@ import { AppService } from './../app.service';
 
 export class LoginComponent {
 
-  userLogin: string = 'admin';
-  userPassword: string = 'admin';
+  userLogin: string = 'abes';
+  userPassword: string = 'abes';
   dataArray: any = [];
   stylesWarn = { };
   
@@ -28,10 +28,10 @@ export class LoginComponent {
       if (this.dataArray[0].isLogin == 'true') {
         this.service.setUserName(this.userLogin);
         this.service.setIsUserLogin(true);
-        this.router.navigate(['/']);
+        this.router.navigate(['osoby']);
       } else {
         this.service.setIsUserLogin(false);
-        this.router.navigate(['/login']);
+        this.router.navigate(['login']);
         this.stylesWarn = {
           'color': 'red',
           'visibility': 'visible'

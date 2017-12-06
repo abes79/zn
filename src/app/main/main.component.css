@@ -39,7 +39,10 @@ img {
 }
 
 .wyloguj {
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
   color: #ff6a00;
-  text-align: center;
+  text-align: right;
   display: block;
+  padding: 14px 20px;
+  text-decoration: none;
 }
