@@ -9,6 +9,11 @@ img {
   vertical-align: middle;
 }
 
+.txt {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
+}
+
 .title {
   text-align: center;
 }
@@ -31,7 +36,3 @@ h2 {
     margin: 5px;
     border: 2px #ccc solid;
   }
-
-input[type="password"] {
-  -webkit-text-security: disc;
-}

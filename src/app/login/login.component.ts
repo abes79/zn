@@ -14,7 +14,8 @@ export class LoginComponent {
   userLogin: string = 'admin';
   userPassword: string = 'admin';
   dataArray: any = [];
-
+  stylesWarn = { };
+  
   constructor(private router: Router, private service: AppService, private _http: HttpClient) { }
 
   loginUser() {
@@ -24,7 +25,6 @@ export class LoginComponent {
     return this._http.post(_url, jsonPost
     ).subscribe((data) => {
       this.dataArray = data;
-      //console.log("loginSQL method: " + this.dataArray[0].isLogin);
       if (this.dataArray[0].isLogin == 'true') {
         this.service.setUserName(this.userLogin);
         this.service.setIsUserLogin(true);
@@ -32,7 +32,15 @@ export class LoginComponent {
       } else {
         this.service.setIsUserLogin(false);
         this.router.navigate(['/login']);
+        this.stylesWarn = {
+          'color': 'red',
+          'visibility': 'visible'
+        };
       }
     })
+  }
+
+  setMyStylesForWarn() {
+    return this.stylesWarn;
   }
 }

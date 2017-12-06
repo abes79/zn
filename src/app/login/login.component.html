@@ -5,14 +5,18 @@
 <hr />
 <br />
 <br />
+<!--<p class="txt" [ngStyle]="{'color': 'red', 'font-size': '20px',  'visibility': visibility==='visible' ? 'visible' : 'hidden'}">-->
+<p class="txt" [ngStyle]="setMyStylesForWarn()" style="visibility:hidden">
+  Błędny login lub hasło.
+</p>
+
 <form (submit)="loginUser()">
-  <div class="login">
-    <label>Login</label>
+  <div class="login" [ngStyle]="setMyStylesForWarn()">
+    <label class="txt">Login</label>
     <input type="text" [(ngModel)]="userLogin" name="login" value="" />
-    <label>Hasło</label>
+    <label class="txt">Hasło</label>
     <input type="password" [(ngModel)]="userPassword" name="hasło" value="" />
     <input type="submit" value="Login" />
   </div>
 </form>
 <br /><br /><hr />
-
