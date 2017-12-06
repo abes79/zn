@@ -4,25 +4,37 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>NAME</th>
-        <th>EMAIL</th>
+        <th>IMIE</th>
+        <th>DRUGIE IMIE</th>
+        <th>NAZWISKO</th>
+        <th>PESEL</th>
+        <th>TELEFON</th>
+        <th>ADRES</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataAray">
+      <tr *ngFor="let data of dataArray">
         <td>{{data.id}}</td>
-        <td>{{data.name}}</td>
-        <td>{{data.email}}</td>
+        <td>{{data.imie}}</td>
+        <td>{{data.drugie_imie}}</td>
+        <td>{{data.nazwisko}}</td>
+        <td>{{data.pesel}}</td>
+        <td>{{data.telefon}}</td>
+        <td>{{data.ulica}} {{data.nr_domu}} {{data.miasto}}</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <br />
+<div>
+  <p>Ilość stron z wynikami {{countPages}}</p>
+  <input type="button" value="POPRZEDNIA" (click)="previousPage()" [disabled]="disabledPrevious"/>
+  <input type="button" value="NASTĘPNA" (click)="nextPage()" [disabled]="disabledNext"/>
+</div>
+<br />
+
 <input type="text" [(ngModel)]="sqlQueryInsert" name="dane" value="" />
-
-<p>{{sqlQueryInsert}}</p>
-
 <div class="button-contener">
   <button class="button green" (click)="selectSql()"><span>Wyślij Select</span></button>
   <button class="button red" (click)="insertSql()"><span>Wyślij Insert</span></button>

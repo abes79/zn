@@ -15,6 +15,7 @@ table, td, th {
 td, th {
   padding: 10px;
   text-align: center;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
 }
 
 tr:nth-child(even) {
@@ -22,8 +23,9 @@ tr:nth-child(even) {
 }
 
 th {
-  background-color: #4CAF50;
+  background: linear-gradient(to bottom, #075eac 0%, #181f6d 50%, #143283 100%);
   color: white;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
 }
 
 input[type=text] {
@@ -35,11 +37,12 @@ input[type=text] {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   outline: none;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
 }
 
-  input[type=text]:focus {
-    border: 3px solid #555;
-  }
+input[type=text]:focus {
+  border: 3px solid #555;
+}
 
 .button-contener {
   max-width: 524px;
@@ -68,26 +71,26 @@ input[type=text] {
 }
 
 .button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
+cursor: pointer;
+display: inline-block;
+position: relative;
+transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
   transition: 0.5s;
 }
 
-  .button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-
 .button:hover span {
-  padding-right: 25px;
+padding-right: 25px;
 }
 
-  .button:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}

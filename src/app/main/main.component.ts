@@ -14,5 +14,4 @@ export class MainComponent implements OnInit {
   }
 
   nick: string = this.service.getUserName();
-
 }

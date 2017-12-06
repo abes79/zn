@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { OsobyComponent } from './main/osoby/osoby.component';
 import { ObiektyComponent } from './main/obiekty/obiekty.component';
 import { AlertComponent } from './main/alert/alert.component';
+import { UmowyComponent } from './main/umowy/umowy.component';
 
 @Injectable()
 export class AuthGuard   {
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
       {
         path: 'umowy',
         canActivate: [AuthGuard],
-        component: AlertComponent
+        component: UmowyComponent
       }
     ]
   },

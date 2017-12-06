@@ -6,10 +6,12 @@ export class AppService {
 
   private isUserLogin: boolean;
   private userName: string;
+  private nrPage: number;
 
   constructor() {
     this.isUserLogin = false;
     this.userName = '';
+    this.nrPage = 0;
   }
 
   setIsUserLogin(status: boolean) {
@@ -20,11 +22,19 @@ export class AppService {
     return this.isUserLogin;
   }
 
-  setUserName(name) {
+  setUserName(name: string) {
     this.userName = name;
   }
 
   getUserName() {
     return this.userName;
+  }
+
+  setNrPage(nr: number) {
+    this.nrPage = nr;
+  }
+
+  getNrPage() {
+    return this.nrPage;
   }
 }
