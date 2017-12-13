@@ -10,9 +10,9 @@ import { HttpClient } from '@angular/common/http';
 export class AlertComponent implements OnInit {
   constructor(private _http: HttpClient, private service: AppService) { }
   ngOnInit() {
-    this.countRowsSql();
-    this.selectSql();
     this.service.setNrPage(0);
+    //this.countRowsSql();
+    this.selectSqlAlert();
   }
 
   title: string = 'Zn';
@@ -25,15 +25,17 @@ export class AlertComponent implements OnInit {
   sqlQuerySelect: string = "SELECT * FROM osoby LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
   sqlQueryInsert: string = "SELECT * FROM testowa LIMIT 0, 5";
 
-  selectSql() {
-    this.sqlQuerySelect = "SELECT * FROM osoby LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+  selectSqlAlert() {
+    this.sqlQuerySelect = "SELECT * , (SELECT COUNT(*) FROM osoby) as count FROM osoby LIMIT "
+      + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
     let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
     let jsonPost: JSON = JSON.parse(toPost);
     let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
     this._http.post(_url, jsonPost
     ).subscribe((data) => {
       this.dataArray = data;
-      //console.log(this.dataArray);
+      this.countPages = Math.ceil(this.dataArray[0]["count"] / this.countRows);
+      //console.log(this.dataArray, this.dataArray[0]["count");
     })
   }
 
@@ -48,20 +50,20 @@ export class AlertComponent implements OnInit {
     })
   }
 
-  countRowsSql() {
-    let toPost: string = '{ "sqlRequest" : "11", "sqlQuery" : "SELECT COUNT(*) FROM osoby" }';
-    let jsonPost: JSON = JSON.parse(toPost);
-    let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
-    this._http.post(_url, jsonPost
-    ).subscribe((data) => {
-      this.dataArray = data;
-      this.countPages = Math.ceil(this.dataArray[0]["COUNT(*)"] / this.countRows);
-    })
-  }
+  //countRowsSql() {
+  //  let toPost: string = '{ "sqlRequest" : "11", "sqlQuery" : "SELECT COUNT(*) FROM osoby" }';
+  //  let jsonPost: JSON = JSON.parse(toPost);
+  //  let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
+  //  this._http.post(_url, jsonPost
+  //  ).subscribe((data) => {
+  //    this.dataArray = data;
+  //    this.countPages = Math.ceil(this.dataArray[0]["COUNT(*)"] / this.countRows);
+  //  })
+  //}
 
   nextPage() {
     this.service.setNrPage(this.service.getNrPage() + 1);
-    this.selectSql();
+    this.selectSqlAlert();
     if (this.service.getNrPage() == (this.countPages - 1)) {
       this.disabledNext = true;
     }
@@ -70,7 +72,7 @@ export class AlertComponent implements OnInit {
 
   previousPage() {
     this.service.setNrPage(this.service.getNrPage() - 1);
-    this.selectSql();
+    this.selectSqlAlert();
 
     if (this.service.getNrPage() == 0) {
       this.disabledPrevious = true;

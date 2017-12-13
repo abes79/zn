@@ -9,11 +9,13 @@ import { OsobyComponent } from './main/osoby/osoby.component';
 import { ObiektyComponent } from './main/obiekty/obiekty.component';
 import { AlertComponent } from './main/alert/alert.component';
 import { UmowyComponent } from './main/umowy/umowy.component';
+import { AddOsobyComponent } from './main/osoby/add-osoby/add-osoby.component';
+import { EditOsobyComponent } from './main/osoby/edit-osoby/edit-osoby.component';
 
 @Injectable()
 export class AuthGuard   {
 
-  constructor(private router: Router, private service: AppService) { }
+  constructor(private router: Router, private service: AppService ) { }
 
     canActivate() {
       
@@ -50,6 +52,16 @@ const appRoutes: Routes = [
         path: 'umowy',
         canActivate: [AuthGuard],
         component: UmowyComponent
+      },
+      {
+        path: 'osoby/add',
+        canActivate: [AuthGuard],
+        component: AddOsobyComponent
+      },
+      {
+        path: 'osoby/edit',
+        canActivate: [AuthGuard],
+        component: EditOsobyComponent
       }
     ]
   },

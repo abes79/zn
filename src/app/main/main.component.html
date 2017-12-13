@@ -2,10 +2,10 @@
   <h1>Witaj {{nick}} w</h1>
   <img width="100" src="./assets/zn.jpg">
   <ul>
-    <li><a [routerLink]="['/alert']">Alerty</a></li>
-    <li><a [routerLink]="['/osoby']">Osoby</a></li>
-    <li><a [routerLink]="['/nieruchomosci']">Nieruchomości</a></li>
-    <li><a [routerLink]="['/umowy']">Umowy</a></li>
+    <li><a [routerLink]="['/alert']" [routerLinkActive]="['is-active']">Alerty</a></li>
+    <li><a [routerLink]="['/osoby']" [routerLinkActive]="['is-active']">Osoby</a></li>
+    <li><a [routerLink]="['/nieruchomosci']" [routerLinkActive]="['is-active']">Nieruchomości</a></li>
+    <li><a [routerLink]="['/umowy']" [routerLinkActive]="['is-active']">Umowy</a></li>
     <a href="./login" class="wyloguj">Wyloguj</a>
   </ul>
   

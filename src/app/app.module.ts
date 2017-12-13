@@ -12,6 +12,8 @@ import { OsobyComponent } from './main/osoby/osoby.component';
 import { ObiektyComponent } from './main/obiekty/obiekty.component';
 import { AlertComponent } from './main/alert/alert.component';
 import { UmowyComponent } from './main/umowy/umowy.component';
+import { AddOsobyComponent } from './main/osoby/add-osoby/add-osoby.component';
+import { EditOsobyComponent } from './main/osoby/edit-osoby/edit-osoby.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { UmowyComponent } from './main/umowy/umowy.component';
       OsobyComponent,
       ObiektyComponent,
       AlertComponent,
-      UmowyComponent
+      UmowyComponent,
+      AddOsobyComponent,
+      EditOsobyComponent
   ],
   imports: [
       BrowserModule,

@@ -10,6 +10,7 @@
         <th>PESEL</th>
         <th>TELEFON</th>
         <th>ADRES</th>
+        <th>EDIT</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
         <td>{{data.pesel}}</td>
         <td>{{data.telefon}}</td>
         <td>{{data.ulica}} {{data.nr_domu}} {{data.miasto}}</td>
+        <td class="edit"><button class="button edit" (click)="editOsoby(data.id)"><span>EDIT</span></button></td>
       </tr>
     </tbody>
   </table>
@@ -36,7 +38,11 @@
 
 <input type="text" [(ngModel)]="sqlQueryInsert" name="dane" value="" />
 <div class="button-contener">
-  <button class="button green" (click)="selectSql()"><span>Wyślij Select</span></button>
+  <button class="button green" (click)="selectSqlOsoby()"><span>Wyślij Select</span></button>
   <button class="button red" (click)="insertSql()"><span>Wyślij Insert</span></button>
 </div>
 <br />
+<hr />
+<a [routerLink]="['/osoby/edit']" >Edit Osoby</a><br>
+<a [routerLink]="['/osoby/add']">Add Osoby</a>
+<router-outlet></router-outlet>
