@@ -1,3 +1,69 @@
+<div class="edit">
 <h2>
- Edit-osoby z ID : {{idEdit}}
+ Edycja osoby z ID : {{idEdit}}  
 </h2>
+<div class="warn">{{_confirm}}</div>
+
+<div class="form">
+<form (submit)="saveEdit()">
+  <div class="left">
+    <h3>Dane personalne</h3>
+    <div>
+      <label>Imie</label>
+      <input type="text" name="imie" [(ngModel)]="dataArray[0]['imie']" />
+    </div>
+    <div>
+      <label>Drugie Imie</label>
+      <input type="text" name="drugie_imie" [(ngModel)]="dataArray[0]['drugie_imie']" />
+    </div>
+    <div>
+      <label>Nazwisko</label>
+      <input type="text" name="nazwisko" [(ngModel)]="dataArray[0]['nazwisko']" />
+    </div>
+    <div>
+      <label>Nr Pesel</label>
+      <input type="text" name="pesel" [(ngModel)]="dataArray[0]['pesel']" />
+    </div>
+    <h3>Kontakt</h3>
+    <div>
+      <label>Email</label>
+      <input type="text" name="email" [(ngModel)]="dataArray[0]['email']" />
+    </div>
+    <div>
+      <label>Telefon</label>
+      <input type="text" name="telefon" [(ngModel)]="dataArray[0]['telefon']" />
+    </div>
+  </div>
+  <div class="right">
+    <h3>Adres</h3>
+    <div>
+      <label>Ulica</label>
+      <input type="text" name="ulica" [(ngModel)]="dataArray[0]['ulica']" />
+    </div>
+    <div>
+      <label>Nr Domu / Mieszkania</label>
+      <input type="text" name="nr_domu" [(ngModel)]="dataArray[0]['nr_domu']" />
+    </div>
+    <div>
+      <label>Gmina / Dzielnica</label>
+      <input type="text" name="gmina" [(ngModel)]="dataArray[0]['gmina']" />
+    </div>
+    <div>
+      <label>Kod Pocztowy</label>
+      <input type="text" name="kod_p" [(ngModel)]="dataArray[0]['kod_p']" />
+    </div>
+    <div>
+      <label>Miasto</label>
+      <input type="text" name="miasto" [(ngModel)]="dataArray[0]['miasto']" />
+    </div>
+    <div>
+      <label>Państwo</label>
+      <input type="text" name="panstwo" [(ngModel)]="dataArray[0]['panstwo']" />
+    </div>
+  </div>
+  <div class="clear"></div>
+  <br />
+  <button type="submit">Zapisz Edycje</button>
+</form>
+</div>
+</div>

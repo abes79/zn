@@ -1,0 +1,50 @@
+.edit {
+  margin: auto;
+  max-width: 1000px;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
+  vertical-align: middle;
+}
+
+.form {
+  width: 1040px;
+  margin: auto
+}
+
+.left {
+  width: 500px;
+  float: left;
+  padding: 0px 10px;
+}
+
+.right {
+  width: 500px;
+  float: right;
+  padding: 0px 10px;
+}
+
+.clear {
+  clear: both;
+}
+
+.warn {
+  color: red;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 8px 8px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 2px solid #555;
+}
+
+button {
+  vertical-align: middle;
+}

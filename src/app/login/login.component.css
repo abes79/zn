@@ -32,7 +32,14 @@ h2 {
 }
 
 .login input {
-    padding: 5px;
-    margin: 5px;
-    border: 2px #ccc solid;
-  }
+  padding: 5px;
+  margin: 5px;
+  border: 2px #ccc solid;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.login input[type=text]:focus, .login input[type=password]:focus {
+  border: 2px solid #555;
+}
