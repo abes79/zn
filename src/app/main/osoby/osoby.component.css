@@ -137,3 +137,13 @@ transition: 0.5s;
 .right {
   float: right;
 }
+
+.nrPage {
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
+  font-size: 18px;
+  color: #777;
+}
+.nrPage span {
+  font-size: 22px;
+  color: #000;
+}

@@ -45,6 +45,52 @@ input[type=text] {
     border: 2px solid #555;
   }
 
-button {
+.button {
   vertical-align: middle;
+}
+
+.button-contener {
+  max-width: 524px;
+  margin: 0 auto;
+}
+
+.button {
+  border: 2px solid #bbb;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 25px;
+  text-align: center;
+  background-color: #ccc;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
+  font-size: 14px;
+  color: #000;
+  transition: all 0.5s;
+  cursor: pointer;
+  width: 190px;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }

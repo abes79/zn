@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-osoby',
@@ -9,23 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddOsobyComponent implements OnInit {
     
-    constructor(private route: ActivatedRoute, private _http: HttpClient) { }
+    constructor(private _http: HttpClient) { }
 
-    ngOnInit() {
-        this.route
-            .queryParams
-            .subscribe(params => {
-                this.idEdit = params['id'];
-            });
-        this.selectSqlOsoby();
-    }
+    ngOnInit() {  }
 
     _confirm: string;
-    idEdit: number;
-    sqlQuerySelect: string;
-    sqlQueryUpdate: string;
+    sqlQueryAdd: string;
     dataArray: any = [{
-        id: "",
         imie: "",
         drugie_imie: "",
         nazwisko: "",
@@ -39,50 +28,43 @@ export class AddOsobyComponent implements OnInit {
         miasto: "",
         panstwo: ""
     }];
+    
+              //INSERT INTO table_name (column1, column2, column3, ...)
+              //VALUES(value1, value2, value3, ...);
 
-    selectSqlOsoby() {
-        this.sqlQuerySelect = "SELECT * FROM osoby WHERE id = " + this.idEdit;
-        let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
-        let jsonPost: JSON = JSON.parse(toPost);
-        let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
-        this._http.post(_url, jsonPost
-        ).subscribe((data) => {
-            this.dataArray = data;
-            //console.log(this.dataArray[0]);
-        })
-    }
-
-    saveEdit() {
+    saveAdd() {
         let goSave: boolean = true;
         // Składanie zapytanie UPDATE
         let arr: any = [];
-        this.sqlQueryUpdate = "UPDATE osoby SET ";
+        this.sqlQueryAdd = "INSERT INTO osoby ( imie, drugie_imie, nazwisko, pesel, email, telefon, ulica, nr_domu, gmina, kod_p, miasto, panstwo ) VALUES ( ";
+        
         for (var prop in this.dataArray[0]) {
             if (Boolean(this.dataArray[0][prop]) && prop !== 'id') {
-                this.sqlQueryUpdate = this.sqlQueryUpdate + prop + " ='" + this.dataArray[0][prop] + "', ";
+                this.sqlQueryAdd = this.sqlQueryAdd + "'" + this.dataArray[0][prop] + "', ";
             } else if (!Boolean(this.dataArray[0][prop])) {
-                this.sqlQueryUpdate = this.sqlQueryUpdate + prop + " = null, ";
+                this.sqlQueryAdd = this.sqlQueryAdd + "null, ";
                 if (prop === "imie" || prop === "nazwisko" || prop === "pesel") {
                     goSave = false;
                 }
             }
         }
-        this.sqlQueryUpdate = this.sqlQueryUpdate.slice(0, -2) + " WHERE id = " + this.dataArray[0]['id'];
+        this.sqlQueryAdd = this.sqlQueryAdd.slice(0, -2) + " ) ";
+        console.log(this.sqlQueryAdd);
         //------------SQL-------------
         if (!this.correctPesel(this.dataArray[0]['pesel'])) {
             alert("Niepoprawny Nr PESEL");
         } else if (!goSave) {
             alert(" Brakuje wymagających danych \n Imię: " + this.dataArray[0]['imie'] + " \n Nazwisko: " + this.dataArray[0]['nazwisko'] + " \n Pesel: " + this.dataArray[0]['pesel']);
-        } else if (confirm("Czy na pewno zapisać zmiany?!") == true) {
-            this._confirm = "Zmiany zostały zapisane.";
-            let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQueryUpdate + '" }';
+        } else if (confirm("Czy na pewno dodać nową osobę?!") == true) {
+            this._confirm = "Nowa osoba została dodana.";
+            let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQueryAdd + '" }';
             let jsonPost: JSON = JSON.parse(toPost);
             let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
             this._http.post(_url, jsonPost).subscribe((data) => {
                 //this.dataArray = data;
             })
         } else {
-            this._confirm = "Nie zapisano zmian.";
+            this._confirm = "Nie zapisano nowej osoby.";
         }
     }
 

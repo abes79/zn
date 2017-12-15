@@ -28,7 +28,7 @@
   </table>
 </div>
 
-<p>Ilość stron z wynikami {{countPages}}</p>
+<p class="nrPage">Strona <span>{{service.getNrPage()+1}}</span> z {{countPages}} wyszukanych</p>
 <br />
 <div class="left">
   <button class="button action" (click)="previousPage()" [disabled]="disabledPrevious"><span>Poprzednia</span></button>
