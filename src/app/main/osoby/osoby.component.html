@@ -1,4 +1,4 @@
-<br />
+﻿<br />
 <div class="table-contener">
   <table>
     <thead>
@@ -28,11 +28,14 @@
   </table>
 </div>
 
+<p>Ilość stron z wynikami {{countPages}}</p>
 <br />
-<div>
-  <p>Ilość stron z wynikami {{countPages}}</p>
-  <input type="button" value="POPRZEDNIA" (click)="previousPage()" [disabled]="disabledPrevious"/>
-  <input type="button" value="NASTĘPNA" (click)="nextPage()" [disabled]="disabledNext"/>
+<div class="left">
+  <button class="button action" (click)="previousPage()" [disabled]="disabledPrevious"><span>Poprzednia</span></button>
+  <button class="button action" (click)="nextPage()" [disabled]="disabledNext"><span>Następna</span></button>
+</div>
+<div class="right">
+  <button class="button action" [routerLink]="['/osoby/add']"><span>Dodaj nową osobę</span></button>
 </div>
 <br />
 
@@ -41,8 +44,3 @@
   <button class="button green" (click)="selectSqlOsoby()"><span>Wyślij Select</span></button>
   <button class="button red" (click)="insertSql()"><span>Wyślij Insert</span></button>
 </div>
-<br />
-<hr />
-<a [routerLink]="['/osoby/edit']" >Edit Osoby</a><br>
-<a [routerLink]="['/osoby/add']">Add Osoby</a>
-<router-outlet></router-outlet>
