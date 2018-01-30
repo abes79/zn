@@ -28,7 +28,7 @@ export class LoginComponent {
       if (this.dataArray[0].isLogin == 'true') {
         this.service.setUserName(this.userLogin);
         this.service.setIsUserLogin(true);
-        this.router.navigate(['osoby']);
+        this.router.navigate(['alert']);
       } else {
         this.service.setIsUserLogin(false);
         this.router.navigate(['login']);

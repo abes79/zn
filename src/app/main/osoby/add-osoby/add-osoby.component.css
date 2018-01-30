@@ -1,4 +1,4 @@
-﻿.add {
+.add {
   margin: auto;
   max-width: 1000px;
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
@@ -74,7 +74,7 @@ input[type=text] {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .button span:after {
@@ -83,7 +83,7 @@ input[type=text] {
   opacity: 0;
   top: 0;
   right: -20px;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .button:hover span {

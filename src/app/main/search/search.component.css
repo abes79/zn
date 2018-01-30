@@ -1,4 +1,4 @@
-.edit {
+.search {
   margin: auto;
   max-width: 1000px;
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
@@ -6,12 +6,12 @@
 }
 
 .form {
-  width: 1040px;
+  width: 1000px;
   margin: auto
 }
 
 .left {
-  width: 500px;
+  width: 400px;
   float: left;
   padding: 0px 10px;
 }
@@ -30,10 +30,10 @@
   color: red;
 }
 
-input[type=text] {
+input[type=text], select {
   width: 100%;
   padding: 8px 8px;
-  margin: 5px 0;
+  margin: 5px 0px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   -webkit-transition: 0.5s;
@@ -45,12 +45,21 @@ input[type=text]:focus {
   border: 2px solid #555;
 }
 
+select:focus {
+  outline: none;
+}
+
+select {
+  width: 175px;
+  margin: 5px 10px;
+}
+
 .button {
   vertical-align: middle;
 }
 
 .button-contener {
-  max-width: 524px;
+  max-width: 200px;
   margin: 0 auto;
 }
 
@@ -66,7 +75,7 @@ input[type=text]:focus {
   color: #000;
   transition: all 0.5s;
   cursor: pointer;
-  width: 190px;
+  width: 155px;
   margin: 5px;
 }
 

@@ -6,11 +6,15 @@ export class AppService {
 
   private isUserLogin: boolean;
   private userName: string;
+  private searchType: string;
+  private kayWord: string;
   private nrPage: number;
 
   constructor() {
     this.isUserLogin = false;
     this.userName = '';
+    this.searchType = '';
+    this.kayWord = '';
     this.nrPage = 0;
   }
 
@@ -28,6 +32,22 @@ export class AppService {
 
   getUserName() {
     return this.userName;
+  }
+
+  setSearchType(searchType: string) {
+    this.searchType = searchType;
+  }
+
+  getSearchType() {
+    return this.searchType;
+  }
+
+  setKayWord(kayWord: string) {
+    this.kayWord = kayWord;
+  }
+
+  getKayWord() {
+    return this.kayWord;
   }
 
   setNrPage(nr: number) {

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -74,11 +74,11 @@ export class AddOsobyComponent implements OnInit {
             let countPeselCorrect = 9 * Number(pesel.charAt(0));
             countPeselCorrect = Number(countPeselCorrect) + (7 * Number(pesel.charAt(1)));
             countPeselCorrect = Number(countPeselCorrect) + (3 * Number(pesel.charAt(2)));
-            countPeselCorrect = Number(countPeselCorrect) + Number(pesel.charAt(3)));
+            countPeselCorrect = Number(countPeselCorrect) + Number(pesel.charAt(3));
             countPeselCorrect = Number(countPeselCorrect) + (9 * Number(pesel.charAt(4)));
             countPeselCorrect = Number(countPeselCorrect) + (7 * Number(pesel.charAt(5)));
             countPeselCorrect = Number(countPeselCorrect) + (3 * Number(pesel.charAt(6)));
-            countPeselCorrect = Number(countPeselCorrect) + Number(pesel.charAt(7)));
+            countPeselCorrect = Number(countPeselCorrect) + Number(pesel.charAt(7));
             countPeselCorrect = Number(countPeselCorrect) + (9 * Number(pesel.charAt(8)));
             countPeselCorrect = Number(countPeselCorrect) + (7 * Number(pesel.charAt(9)));
             countPeselCorrect = countPeselCorrect % 10;

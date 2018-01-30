@@ -15,20 +15,25 @@ export class OsobyComponent implements OnInit {
     this.selectSqlOsoby();
   }
  
-  title: string = 'Zn';
   dataArray: any = [];
   countPages: number;
   countRows: number = 5;
   disabledNext: boolean = false;
   disabledPrevious: boolean = true;
-
-  sqlQuerySelect: string = "SELECT * FROM osoby LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
-  sqlQueryInsert: string = "SELECT * FROM testowa LIMIT 0, 5";
-
+  sqlQuery: string;
+  
   selectSqlOsoby() {
-    this.sqlQuerySelect = "SELECT *, (SELECT COUNT(*) FROM osoby) as count FROM osoby LIMIT "
-      + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
-    let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
+    console.log(this.router.url);
+    if (this.router.url === "/osoby") {
+      this.sqlQuery= "SELECT *, (SELECT COUNT(*) FROM osoby) as count FROM osoby LIMIT "
+        + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+    } else {
+      this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM osoby  WHERE " + this.service.getSearchType() +
+        " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM osoby WHERE "
+        + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
+        + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+    }
+    let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuery + '" }';
     let jsonPost: JSON = JSON.parse(toPost);
     let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
     this._http.post(_url, jsonPost
@@ -36,17 +41,6 @@ export class OsobyComponent implements OnInit {
       this.dataArray = data;
       this.countPages = Math.ceil(this.dataArray[0]["count"] / this.countRows);
       //console.log(this.dataArray, this.dataArray[0]["count"]);
-    })
-  }
-
-  insertSql() {
-    let toPost: string = '{ "sqlRequest" : "11", "sqlQuery" : "'+ this.sqlQueryInsert +'" }';
-    let jsonPost: JSON = JSON.parse(toPost);
-    let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
-    this._http.post(_url, jsonPost
-    ).subscribe((data) => {
-      this.dataArray = data;
-      console.log(this.dataArray)
     })
   }
 

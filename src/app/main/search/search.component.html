@@ -1,0 +1,35 @@
+<div class="search">
+  <h2>
+    Wyszukiwanie osób, nieruchomości, umów
+  </h2>
+  <div class="warn"></div>
+    <div class="form">
+      <form (submit)="search()">
+        <div class="left">
+          <label>Wybierz czego szukamy: </label><br />
+
+          <select [(ngModel)]="selectedValue1" name="select1">
+            <option *ngFor="let opt1 of selectOption1" [ngValue]="opt1.value">
+              {{opt1.viewValue}}
+            </option>
+          </select>
+          <select [(ngModel)]="selectedValue2" name="select2">
+            <option *ngFor="let opt2 of selectOption2[0][selectedValue1]" [ngValue]="opt2.value">
+              {{opt2.viewValue}}
+            </option>
+          </select>
+
+        </div>
+        <div class="right">
+          <label>Słowo kluczowe: </label>
+          <input type="text" [(ngModel)]="keyWord" name="search" />
+        </div>
+        <div class="clear"></div>
+        <br />
+        <button class="button" type="submit" [routerLink]="['/search']"><span>Wyszukaj</span></button>
+      </form>
+     </div>
+
+  <hr />
+  <router-outlet></router-outlet>
+</div>

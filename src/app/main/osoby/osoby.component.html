@@ -1,4 +1,4 @@
-﻿<br />
+<br />
 <div class="table-contener">
   <table>
     <thead>
@@ -31,16 +31,9 @@
 <p class="nrPage">Strona <span>{{service.getNrPage()+1}}</span> z {{countPages}} wyszukanych</p>
 <br />
 <div class="left">
-  <button class="button action" (click)="previousPage()" [disabled]="disabledPrevious"><span>Poprzednia</span></button>
+  <button class="button action previous" (click)="previousPage()" [disabled]="disabledPrevious"><span>Poprzednia</span></button>
   <button class="button action" (click)="nextPage()" [disabled]="disabledNext"><span>Następna</span></button>
 </div>
 <div class="right">
   <button class="button action" [routerLink]="['/osoby/add']"><span>Dodaj nową osobę</span></button>
-</div>
-<br />
-
-<input type="text" [(ngModel)]="sqlQueryInsert" name="dane" value="" />
-<div class="button-contener">
-  <button class="button green" (click)="selectSqlOsoby()"><span>Wyślij Select</span></button>
-  <button class="button red" (click)="insertSql()"><span>Wyślij Insert</span></button>
 </div>
