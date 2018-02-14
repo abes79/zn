@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+import { AppService } from './../../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditOsobyComponent implements OnInit {
 
-    constructor(private route: ActivatedRoute, private _http: HttpClient) { }
+    constructor(private route: ActivatedRoute, private _http: HttpClient, private service: AppService) { }
 
     ngOnInit() {
         this.route
@@ -44,7 +45,7 @@ export class EditOsobyComponent implements OnInit {
         this.sqlQuerySelect = "SELECT * FROM osoby WHERE id = " + this.idEdit;
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
-        let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
+        let _url: string = this.service.getConnectUrl();
         this._http.post(_url, jsonPost
         ).subscribe((data) => {
             this.dataArray = data;
@@ -77,7 +78,7 @@ export class EditOsobyComponent implements OnInit {
             this._confirm = "Zmiany zostały zapisane.";
             let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQueryUpdate + '" }';
             let jsonPost: JSON = JSON.parse(toPost);
-            let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
+            let _url: string = this.service.getConnectUrl();
             this._http.post(_url, jsonPost).subscribe((data) => {
                 //this.dataArray = data;
             })

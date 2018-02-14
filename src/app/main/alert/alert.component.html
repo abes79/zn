@@ -1,27 +1,25 @@
-<h2>Będą tu informacje o bieżącym stanie.</h2>
+﻿<h2>Będą tu informacje o bieżącym stanie.</h2>
 <br />
 <div class="table-contener">
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>IMIE</th>
-        <th>DRUGIE IMIE</th>
-        <th>NAZWISKO</th>
-        <th>PESEL</th>
-        <th>TELEFON</th>
-        <th>ADRES</th>
+        <th>DATA</th>
+        <th>TYP</th>
+        <th>OPIS</th>
+        <th>LINK</th>
+        <th>AKCJA</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of dataArray">
         <td>{{data.id}}</td>
-        <td>{{data.imie}}</td>
-        <td>{{data.drugie_imie}}</td>
-        <td>{{data.nazwisko}}</td>
-        <td>{{data.pesel}}</td>
-        <td>{{data.telefon}}</td>
-        <td>{{data.ulica}} {{data.nr_domu}} {{data.miasto}}</td>
+        <td>{{data.data}}</td>
+        <td>{{data.typ}}</td>
+        <td>{{data.text}}</td>
+        <td>{{data.link}}</td>
+        <td><button class="button akcja" (click)="akcja(data.id)"><span>AKCJA</span></button></td>
       </tr>
     </tbody>
   </table>

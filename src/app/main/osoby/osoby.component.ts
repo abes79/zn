@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ export class OsobyComponent implements OnInit {
   sqlQuery: string;
   
   selectSqlOsoby() {
-    console.log(this.router.url);
+    //console.log(this.router.url);
     if (this.router.url === "/osoby") {
       this.sqlQuery= "SELECT *, (SELECT COUNT(*) FROM osoby) as count FROM osoby LIMIT "
         + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
@@ -35,7 +35,7 @@ export class OsobyComponent implements OnInit {
     }
     let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuery + '" }';
     let jsonPost: JSON = JSON.parse(toPost);
-    let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
+    let _url: string = this.service.getConnectUrl();
     this._http.post(_url, jsonPost
     ).subscribe((data) => {
       this.dataArray = data;

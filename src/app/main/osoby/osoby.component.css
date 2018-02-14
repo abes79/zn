@@ -1,4 +1,4 @@
-.table-contener {
+﻿.table-contener {
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -133,7 +133,7 @@ transition: 0.3s;
   color: #000;
   transition: all 0.5s;
   cursor: pointer;
-  width: 190px;
+  width: 200px;
   margin: 5px;
 }
 

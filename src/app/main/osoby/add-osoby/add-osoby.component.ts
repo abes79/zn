@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+import { AppService } from './../../../app.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddOsobyComponent implements OnInit {
     
-    constructor(private _http: HttpClient) { }
+    constructor(private _http: HttpClient, private service: AppService) { }
 
     ngOnInit() {  }
 
@@ -59,7 +60,7 @@ export class AddOsobyComponent implements OnInit {
             this._confirm = "Nowa osoba została dodana.";
             let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQueryAdd + '" }';
             let jsonPost: JSON = JSON.parse(toPost);
-            let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
+            let _url: string = this.service.getConnectUrl();
             this._http.post(_url, jsonPost).subscribe((data) => {
                 //this.dataArray = data;
             })

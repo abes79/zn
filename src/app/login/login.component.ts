@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from './../app.service';
@@ -21,7 +21,7 @@ export class LoginComponent {
   loginUser() {
     let toPost: string = '{ "sqlRequest" : "22", "sqlQuery" : "SELECT * FROM login WHERE login=\'' + this.userLogin +'\'", "sqlPassword" : "'+ this.userPassword +'" }';
     let jsonPost: JSON = JSON.parse(toPost);
-    let _url: string = 'http://abes79.linuxpl.info/zn/db_sql.php';
+    let _url: string = this.service.getConnectUrl();
     return this._http.post(_url, jsonPost
     ).subscribe((data) => {
       this.dataArray = data;
