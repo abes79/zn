@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+﻿import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/Forms';
@@ -15,6 +15,8 @@ import { SearchComponent } from './main/search/search.component';
 import { UmowyComponent } from './main/umowy/umowy.component';
 import { AddOsobyComponent } from './main/osoby/add-osoby/add-osoby.component';
 import { EditOsobyComponent } from './main/osoby/edit-osoby/edit-osoby.component';
+import { AddObiektyComponent } from './main/obiekty/add-obiekty/add-obiekty.component';
+import { EditObiektyComponent } from './main/obiekty/edit-obiekty/edit-obiekty.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { EditOsobyComponent } from './main/osoby/edit-osoby/edit-osoby.component
       ObiektyComponent,
       UmowyComponent,
       AddOsobyComponent,
-      EditOsobyComponent
+      EditOsobyComponent,
+      AddObiektyComponent,
+      EditObiektyComponent
   ],
   imports: [
       BrowserModule,

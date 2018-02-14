@@ -22,7 +22,7 @@ export class AlertComponent implements OnInit {
   disabledPrevious: boolean = true;
 
   sqlQuerySelect: string = "SELECT * FROM alerty LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
-  sqlQueryInsert: string = "SELECT * FROM testowa LIMIT 0, 5";
+  sqlQueryInsert: string = "SELECT * FROM alerty LIMIT 0, 5";
 
   selectSqlAlert() {
     this.sqlQuerySelect = "SELECT * , (SELECT COUNT(*) FROM alerty) as count FROM alerty LIMIT "
@@ -65,5 +65,10 @@ export class AlertComponent implements OnInit {
       this.disabledPrevious = true;
     }
     this.disabledNext = false;
+  }
+
+  akcja(link) {
+      //this.router.navigate(['osoby/edit'], { queryParams: { id: idOsoby } });
+      console.log('Akcja z linkiem: ' + link);
   }
 }

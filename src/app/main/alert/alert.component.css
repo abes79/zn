@@ -77,14 +77,14 @@ input[type=text] {
   transition: 0.3s;
 }
 
-  .button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: 20px;
-    transition: 0.3s;
-  }
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 20px;
+  transition: 0.3s;
+}
 
 .button.previous span:after {
   content: '\00ab';
@@ -117,7 +117,7 @@ input[type=text] {
   margin: 1px;
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
   font-size: 14px;
-  width: 70px;
+  width: 80px;
   background-color: #ddd;
 }
 
@@ -137,9 +137,9 @@ input[type=text] {
   margin: 5px;
 }
 
-.button.action:disabled {
-  color: #bbb;
-}
+  .button.action:disabled {
+    color: #bbb;
+  }
 
 .left {
   float: left;

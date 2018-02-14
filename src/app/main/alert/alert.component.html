@@ -1,5 +1,4 @@
-﻿<h2>Będą tu informacje o bieżącym stanie.</h2>
-<br />
+﻿<br />
 <div class="table-contener">
   <table>
     <thead>
@@ -19,17 +18,18 @@
         <td>{{data.typ}}</td>
         <td>{{data.text}}</td>
         <td>{{data.link}}</td>
-        <td><button class="button akcja" (click)="akcja(data.id)"><span>AKCJA</span></button></td>
+        <td><button class="button akcja" (click)="akcja(data.link)"><span>AKCJA</span></button></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <br />
-<div>
-  <p>Ilość stron z wynikami {{countPages}}</p>
-  <input type="button" value="POPRZEDNIA" (click)="previousPage()" [disabled]="disabledPrevious" />
-  <input type="button" value="NASTĘPNA" (click)="nextPage()" [disabled]="disabledNext" />
+<p class="nrPage">Strona <span>{{service.getNrPage()+1}}</span> z {{countPages}} wyszukanych</p>
+<br />
+<div class="left">
+  <button class="button action previous" (click)="previousPage()" [disabled]="disabledPrevious"><span>Poprzednia</span></button>
+  <button class="button action" (click)="nextPage()" [disabled]="disabledNext"><span>Następna</span></button>
 </div>
 <br />
 

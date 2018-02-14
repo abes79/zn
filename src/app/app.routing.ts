@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Router, Routes, RouterModule } from '@angular/router';
 
 import { AppService } from './app.service';
@@ -12,6 +12,8 @@ import { SearchComponent } from './main/search/search.component';
 import { UmowyComponent } from './main/umowy/umowy.component';
 import { AddOsobyComponent } from './main/osoby/add-osoby/add-osoby.component';
 import { EditOsobyComponent } from './main/osoby/edit-osoby/edit-osoby.component';
+import { AddObiektyComponent } from './main/obiekty/add-obiekty/add-obiekty.component';
+import { EditObiektyComponent } from './main/obiekty/edit-obiekty/edit-obiekty.component';
 
 @Injectable()
 export class AuthGuard   {
@@ -48,6 +50,11 @@ const appRoutes: Routes = [
             path: 'osoby',
             //canActivate: [AuthGuard],
             component: OsobyComponent
+          },
+          {
+            path: 'nieruchomosci',
+            //canActivate: [AuthGuard],
+            component: ObiektyComponent
           }
         ]
       },
@@ -75,6 +82,16 @@ const appRoutes: Routes = [
         path: 'osoby/edit',
         canActivate: [AuthGuard],
         component: EditOsobyComponent
+      },
+      {
+        path: 'obiekty/add',
+        canActivate: [AuthGuard],
+        component: AddObiektyComponent
+      },
+      {
+        path: 'obiekty/edit',
+        canActivate: [AuthGuard],
+        component: EditObiektyComponent
       }
     ]
   },

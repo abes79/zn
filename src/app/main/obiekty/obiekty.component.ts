@@ -24,7 +24,7 @@ export class ObiektyComponent implements OnInit {
     sqlQuery: string;
 
     selectSqlObiekty() {
-        console.log(this.router.url);
+        //console.log(this.router.url);
         if (this.router.url === "/nieruchomosci") {
             this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM obiekty) as count FROM obiekty LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
@@ -64,7 +64,7 @@ export class ObiektyComponent implements OnInit {
         this.disabledNext = false;
     }
 
-    editOsoby(idObiekty) {
-        this.router.navigate(['obiekty/edit'], { queryParams: { id: idObiekty } });
+    editObiekt(idObiektu) {
+        this.router.navigate(['obiekty/edit'], { queryParams: { id: idObiektu } });
     }
 }
