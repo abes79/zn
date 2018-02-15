@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { Router } from '@angular/router';
 
@@ -54,6 +54,10 @@ export class SearchComponent implements OnInit {
         this.service.setSearchType(this.selectedValue2);
         this.service.setKayWord(this.keyWord);
         this.router.navigate(['search/osoby']);
+      } else if (this.selectedValue1 === 'obiekty') {
+          this.service.setSearchType(this.selectedValue2);
+          this.service.setKayWord(this.keyWord);
+          this.router.navigate(['search/obiekty']);
       }
 
     }

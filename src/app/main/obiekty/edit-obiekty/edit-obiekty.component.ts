@@ -48,6 +48,11 @@ export class EditObiektyComponent implements OnInit {
         panstwo: ""
     }];
     opisLength: number = this.dataArray[0].text.length;
+    selectOption1 = [
+        { value: 'dom', viewValue: 'Dom' },
+        { value: 'mie', viewValue: 'Mieszkanie' },
+        { value: 'lok', viewValue: 'Lokal' }
+    ];
 
     selectSqlObiekty() {
         this.sqlQuerySelect = "SELECT * FROM obiekty WHERE id = " + this.idEdit;
@@ -59,6 +64,8 @@ export class EditObiektyComponent implements OnInit {
             this.dataArray = data;
             if (this.dataArray[0].text) {
                 this.opisLength = this.dataArray[0].text.length;
+            } else {
+                this.dataArray[0].text = "";
             }
         })
     }

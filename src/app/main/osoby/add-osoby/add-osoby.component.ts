@@ -35,12 +35,12 @@ export class AddOsobyComponent implements OnInit {
 
     saveAdd() {
         let goSave: boolean = true;
-        // Składanie zapytanie UPDATE
+        // Składanie zapytanie INSERT
         let arr: any = [];
         this.sqlQueryAdd = "INSERT INTO osoby ( imie, drugie_imie, nazwisko, pesel, email, telefon, ulica, nr_domu, gmina, kod_p, miasto, panstwo ) VALUES ( ";
         
         for (var prop in this.dataArray[0]) {
-            if (Boolean(this.dataArray[0][prop]) && prop !== 'id') {
+            if (Boolean(this.dataArray[0][prop]) ) {
                 this.sqlQueryAdd = this.sqlQueryAdd + "'" + this.dataArray[0][prop] + "', ";
             } else if (!Boolean(this.dataArray[0][prop])) {
                 this.sqlQueryAdd = this.sqlQueryAdd + "null, ";

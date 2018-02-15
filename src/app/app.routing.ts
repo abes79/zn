@@ -52,7 +52,7 @@ const appRoutes: Routes = [
             component: OsobyComponent
           },
           {
-            path: 'nieruchomosci',
+            path: 'obiekty',
             //canActivate: [AuthGuard],
             component: ObiektyComponent
           }

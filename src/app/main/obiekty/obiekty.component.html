@@ -6,7 +6,7 @@
         <th>ID</th>
         <th>TYP</th>
         <th>ADRES</th>
-        <th>OPIS</th>
+        <th>NOTKA</th>
         <th>EDIT</th>
       </tr>
     </thead>
@@ -15,7 +15,7 @@
         <td>{{data.id}}</td>
         <td>{{data.typ}}</td>
         <td>{{data.ulica}} {{data.nr_domu}}, {{data.gmina}} {{data.miasto}}</td>
-        <td>{{data.text}}</td>
+        <td>{{data.text === null ? '' : ( data.text.length < 50 ? data.text : data.text.substring(0, 50).concat('...') )}}</td>
         <td class="edit"><button class="button edit" (click)="editObiekt(data.id)"><span>EDIT</span></button></td>
       </tr>
     </tbody>

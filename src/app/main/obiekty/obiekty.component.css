@@ -18,6 +18,10 @@ td, th {
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode";
 }
 
+td {
+  max-width: 400px;
+}
+
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
