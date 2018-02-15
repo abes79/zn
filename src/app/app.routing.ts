@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { OsobyComponent } from './main/osoby/osoby.component';
 import { ObiektyComponent } from './main/obiekty/obiekty.component';
+import { FirmyComponent } from './main/firmy/firmy.component';
 import { AlertComponent } from './main/alert/alert.component';
 import { SearchComponent } from './main/search/search.component';
 import { UmowyComponent } from './main/umowy/umowy.component';
@@ -14,6 +15,8 @@ import { AddOsobyComponent } from './main/osoby/add-osoby/add-osoby.component';
 import { EditOsobyComponent } from './main/osoby/edit-osoby/edit-osoby.component';
 import { AddObiektyComponent } from './main/obiekty/add-obiekty/add-obiekty.component';
 import { EditObiektyComponent } from './main/obiekty/edit-obiekty/edit-obiekty.component';
+import { AddFirmyComponent } from './main/firmy/add-firmy/add-firmy.component';
+import { EditFirmyComponent } from './main/firmy/edit-firmy/edit-firmy.component';
 
 @Injectable()
 export class AuthGuard   {
@@ -55,6 +58,11 @@ const appRoutes: Routes = [
               path: 'nieruchomosci',
             canActivate: [AuthGuard],
             component: ObiektyComponent
+          },
+          {
+            path: 'firmy',
+            canActivate: [AuthGuard],
+            component: FirmyComponent
           }
         ]
       },
@@ -62,6 +70,11 @@ const appRoutes: Routes = [
         path: 'osoby',
         canActivate: [AuthGuard],
         component: OsobyComponent
+      },
+      {
+        path: 'firmy',
+        canActivate: [AuthGuard],
+        component: FirmyComponent
       },
       {
         path: 'nieruchomosci',
@@ -92,6 +105,16 @@ const appRoutes: Routes = [
         path: 'nieruchomosci/edit',
         canActivate: [AuthGuard],
         component: EditObiektyComponent
+      },
+      {
+          path: 'firmy/add',
+          canActivate: [AuthGuard],
+          component: AddFirmyComponent
+      },
+      {
+          path: 'firmy/edit',
+          canActivate: [AuthGuard],
+          component: EditFirmyComponent
       }
     ]
   },

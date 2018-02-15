@@ -1,0 +1,35 @@
+﻿<br />
+<div class="table-contener">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>OSOBA</th>
+        <th>NAZWA</th>
+        <th>ADRES</th>
+        <th>TELEFON</th>
+        <th>EDIT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataArray">
+        <td>{{data.id}}</td>
+        <td>{{data.osoby_id}}</td>
+        <td>{{data.nazwa}}</td>
+        <td>{{data.ulica}} {{data.nr_domu}}, {{data.gmina}} {{data.miasto}}</td>
+        <td>{{data.telefon}}</td>
+        <td class="edit"><button class="button edit" (click)="editObiekt(data.id)"><span>EDIT</span></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="nrPage">Strona <span>{{service.getNrPage()+1}}</span> z {{countPages}} wyszukanych</p>
+<br />
+<div class="left">
+  <button class="button action previous" (click)="previousPage()" [disabled]="disabledPrevious"><span>Poprzednia</span></button>
+  <button class="button action" (click)="nextPage()" [disabled]="disabledNext"><span>Następna</span></button>
+</div>
+<div class="right">
+  <button class="button action" [routerLink]="['/firmy/add']"><span>Dodaj firmę</span></button>
+</div>
