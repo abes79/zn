@@ -38,9 +38,15 @@ export class OsobyComponent implements OnInit {
     let _url: string = this.service.getConnectUrl();
     this._http.post(_url, jsonPost
     ).subscribe((data) => {
-      this.dataArray = data;
-      this.countPages = Math.ceil(this.dataArray[0]["count"] / this.countRows);
-      //console.log(this.dataArray, this.dataArray[0]["count"]);
+        this.dataArray = data;
+        if (this.dataArray != null) {
+            this.countPages = Math.ceil(this.dataArray[0]["count"] / this.countRows);
+        } else {
+            this.countPages = 0;
+        }
+        if (this.countPages <= 1) {
+            this.disabledNext = true;
+        }
     })
   }
 

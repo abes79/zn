@@ -48,12 +48,12 @@ const appRoutes: Routes = [
         children: [
           {
             path: 'osoby',
-            //canActivate: [AuthGuard],
+            canActivate: [AuthGuard],
             component: OsobyComponent
           },
           {
-            path: 'obiekty',
-            //canActivate: [AuthGuard],
+              path: 'nieruchomosci',
+            canActivate: [AuthGuard],
             component: ObiektyComponent
           }
         ]
@@ -84,12 +84,12 @@ const appRoutes: Routes = [
         component: EditOsobyComponent
       },
       {
-        path: 'obiekty/add',
+        path: 'nieruchomosci/add',
         canActivate: [AuthGuard],
         component: AddObiektyComponent
       },
       {
-        path: 'obiekty/edit',
+        path: 'nieruchomosci/edit',
         canActivate: [AuthGuard],
         component: EditObiektyComponent
       }

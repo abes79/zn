@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
   resultExisting: boolean = false;
   selectOption1 = [
     { value: 'osoby', viewValue: 'Osoby' },
-    { value: 'obiekty', viewValue: 'Nieruchomości' },
+    { value: 'nieruchomosci', viewValue: 'Nieruchomości' },
     { value: 'umowy', viewValue: 'Umowy' }
   ];
   selectedValue2: string;
@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
       { value: 'kod_p', viewValue: 'Kod Pocztowy' }, { value: 'miasto', viewValue: 'Miasto' },
       { value: 'panstwo', viewValue: 'Państwo' }
     ],
-    obiekty: [
+    nieruchomosci: [
       { value: 'id', viewValue: 'ID' }, { value: 'typ', viewValue: 'Typ Nieruchomości' },
       { value: 'ulica', viewValue: 'Ulica' }, { value: 'nr_domu', viewValue: 'Nr Domu' },
       { value: 'gmina', viewValue: 'Gmina / Dzielnica' }, { value: 'miasto', viewValue: 'Miasto' },
@@ -48,16 +48,16 @@ export class SearchComponent implements OnInit {
 
   search() {
     // silnik wyszukiwania
-    console.log(this.selectedValue1 + ' ' + this.selectedValue2 + ' ' + this.keyWord);
+    //console.log(this.selectedValue1 + ' ' + this.selectedValue2 + ' ' + this.keyWord);
     if (this.selectedValue2) {
       if (this.selectedValue1 === 'osoby') {
         this.service.setSearchType(this.selectedValue2);
         this.service.setKayWord(this.keyWord);
         this.router.navigate(['search/osoby']);
-      } else if (this.selectedValue1 === 'obiekty') {
+      } else if (this.selectedValue1 === 'nieruchomosci') {
           this.service.setSearchType(this.selectedValue2);
           this.service.setKayWord(this.keyWord);
-          this.router.navigate(['search/obiekty']);
+          this.router.navigate(['search/nieruchomosci']);
       }
 
     }

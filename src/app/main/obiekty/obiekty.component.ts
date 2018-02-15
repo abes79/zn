@@ -40,8 +40,14 @@ export class ObiektyComponent implements OnInit {
         this._http.post(_url, jsonPost
         ).subscribe((data) => {
             this.dataArray = data;
-            this.countPages = Math.ceil(this.dataArray[0]["count"] / this.countRows);
-            //console.log(this.dataArray, this.dataArray[0]["count"]);
+            if (this.dataArray != null) {
+                this.countPages = Math.ceil(this.dataArray[0]["count"] / this.countRows);
+            } else {
+                this.countPages = 0;
+            }
+            if (this.countPages <= 1) {
+                this.disabledNext = true;
+            }
         })
     }
 
@@ -65,6 +71,6 @@ export class ObiektyComponent implements OnInit {
     }
 
     editObiekt(idObiektu) {
-        this.router.navigate(['obiekty/edit'], { queryParams: { id: idObiektu } });
+        this.router.navigate(['nieruchomosci/edit'], { queryParams: { id: idObiektu } });
     }
 }
