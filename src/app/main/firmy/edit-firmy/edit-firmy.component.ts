@@ -13,7 +13,6 @@ export class EditFirmyComponent implements OnInit {
     constructor(private route: ActivatedRoute, private _http: HttpClient, private service: AppService) { }
 
     ngOnInit() {
-        this.opisLength = 0;
         this.route
             .queryParams
             .subscribe(params => {
@@ -42,8 +41,9 @@ export class EditFirmyComponent implements OnInit {
         panstwo: ""
     }];
 
+    // SELECT firmy.*, osoby.imie, osoby.nazwisko FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE firmy.id =
     selectSqlObiekty() {
-        this.sqlQuerySelect = "SELECT * FROM firmy WHERE id = " + this.idEdit;
+        this.sqlQuerySelect = "SELECT firmy.*, osoby.imie, osoby.nazwisko FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE firmy.id = " + this.idEdit;
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
         let _url: string = this.service.getConnectUrl();

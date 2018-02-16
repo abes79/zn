@@ -41,9 +41,14 @@ input, select {
   outline: none;
 }
 
-  input:focus, select {
-    border: 2px solid #555;
-  }
+input:disabled {
+  width: 58%;
+  background: #ffffff;
+}
+
+input:focus, select {
+  border: 2px solid #555;
+}
 
 .button {
   vertical-align: middle;

@@ -9,8 +9,9 @@
       <div class="left">
         <h3>Dane firmy</h3>       
         <div>
-          <label>ID Osoby</label>
-          <input type="text" min="1000" max="9999" name="osoby_id" [(ngModel)]="dataArray[0]['osoby_id']" />
+          <label>Osoba Reprezentująca</label><br />
+          <input type="text" value="{{dataArray[0]['imie']}} {{dataArray[0]['nazwisko']}}" disabled />
+          <button class="button" type="button"><span>Zmień Osobę</span></button>
         </div>
         <div>
           <label>Nazwa Firmy</label>
@@ -30,7 +31,7 @@
         </div>
         <div>
           <label>E Mail</label>
-          <input type="text" name="email" maxlength="350" [(ngModel)]="dataArray[0]['email']" />
+          <input type="text" name="email" maxlength="50" [(ngModel)]="dataArray[0]['email']" />
         </div>
       </div>
       <div class="right">
