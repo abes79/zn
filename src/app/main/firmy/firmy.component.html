@@ -4,8 +4,8 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>NAZWA FIRMY</th>
         <th>OSOBA</th>
-        <th>NAZWA</th>
         <th>ADRES</th>
         <th>TELEFON</th>
         <th>EDIT</th>
@@ -14,8 +14,8 @@
     <tbody>
       <tr *ngFor="let data of dataArray">
         <td>{{data.id}}</td>
-        <td>{{data.imie}} {{data.nazwisko}}</td>
         <td>{{data.nazwa}}</td>
+        <td>{{data.imie}} {{data.nazwisko}}</td>
         <td>{{data.ulica}} {{data.nr_domu}}, {{data.gmina}} {{data.miasto}}</td>
         <td>{{data.telefon}}</td>
         <td class="edit"><button class="button edit" (click)="editObiekt(data.id)"><span>EDIT</span></button></td>

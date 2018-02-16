@@ -43,7 +43,6 @@ export class EditFirmyComponent implements OnInit {
     }];
 
     selectSqlObiekty() {
-        // SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE firmy.id = 1 LIMIT 0 , 10;
         this.sqlQuerySelect = "SELECT * FROM firmy WHERE id = " + this.idEdit;
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
         let jsonPost: JSON = JSON.parse(toPost);

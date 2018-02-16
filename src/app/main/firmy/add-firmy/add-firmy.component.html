@@ -1,3 +1,68 @@
-<p>
-  add-firmy works!
-</p>
+﻿<div class="add">
+  <h2>
+    Dodawanie nowej firmy.
+  </h2>
+  <div class="warn">{{_confirm}}</div>
+
+  <div class="form">
+    <form (submit)="saveAdd()">
+      <div class="left">
+        <h3>Dane firmy</h3>
+        <div>
+          <label>Osoba Reprezentująca</label>
+          <input type="text" name="osoby_id" [(ngModel)]="dataArray[0]['osoby_id']" />
+        </div>
+        <div>
+          <label>Nazwa Firmy</label>
+          <input type="text" name="nazwa" [(ngModel)]="dataArray[0]['nazwa']" />
+        </div>
+        <div>
+          <label>NIP</label>
+          <input type="text" name="nip" [(ngModel)]="dataArray[0]['nip']" />
+        </div>
+        <div>
+          <label>Regon</label>
+          <input type="text" name="regon" [(ngModel)]="dataArray[0]['regon']" />
+        </div>
+        <div>
+          <label>Telefon</label>
+          <input type="text" maxlength="12" name="telefon" [(ngModel)]="dataArray[0]['telefon']" />
+        </div>
+        <div>
+          <label>E Mail</label>
+          <input type="text" name="email" maxlength="50" [(ngModel)]="dataArray[0]['email']" />
+        </div>
+      </div>
+      <div class="right">
+        <h3>Adres</h3>
+        <div>
+          <label>Ulica</label>
+          <input type="text" name="ulica" [(ngModel)]="dataArray[0]['ulica']" />
+        </div>
+        <div>
+          <label>Nr Domu / Mieszkania</label>
+          <input type="text" name="nr_domu" [(ngModel)]="dataArray[0]['nr_domu']" />
+        </div>
+        <div>
+          <label>Gmina / Dzielnica</label>
+          <input type="text" name="gmina" [(ngModel)]="dataArray[0]['gmina']" />
+        </div>
+        <div>
+          <label>Kod Pocztowy</label>
+          <input type="text" name="kod_p" [(ngModel)]="dataArray[0]['kod_p']" />
+        </div>
+        <div>
+          <label>Miasto</label>
+          <input type="text" name="miasto" [(ngModel)]="dataArray[0]['miasto']" />
+        </div>
+        <div>
+          <label>Państwo</label>
+          <input type="text" name="panstwo" [(ngModel)]="dataArray[0]['panstwo']" />
+        </div>
+      </div>
+      <div class="clear"></div>
+      <br />
+      <button class="button" type="submit"><span>Zapisz Edycje</span></button>
+    </form>
+  </div>
+</div>
