@@ -107,14 +107,14 @@ const appRoutes: Routes = [
         component: EditObiektyComponent
       },
       {
-          path: 'firmy/add',
-          canActivate: [AuthGuard],
-          component: AddFirmyComponent
+        path: 'firmy/add',
+        canActivate: [AuthGuard],
+        component: AddFirmyComponent
       },
       {
-          path: 'firmy/edit',
-          canActivate: [AuthGuard],
-          component: EditFirmyComponent
+        path: 'firmy/edit',
+        canActivate: [AuthGuard],
+        component: EditFirmyComponent
       }
     ]
   },

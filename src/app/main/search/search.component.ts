@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   resultExisting: boolean = false;
   selectOption1 = [
     { value: 'osoby', viewValue: 'Osoby' },
+    { value: 'firmy', viewValue: 'Firmy' },
     { value: 'nieruchomosci', viewValue: 'Nieruchomości' },
     { value: 'umowy', viewValue: 'Umowy' }
   ];
@@ -32,6 +33,15 @@ export class SearchComponent implements OnInit {
       { value: 'nr_domu', viewValue: 'Nr Domu' }, { value: 'gmina', viewValue: 'Gmina / Dzielnica' },
       { value: 'kod_p', viewValue: 'Kod Pocztowy' }, { value: 'miasto', viewValue: 'Miasto' },
       { value: 'panstwo', viewValue: 'Państwo' }
+    ],
+    firmy: [  
+        { value: 'id', viewValue: 'ID' }, { value: 'osoby_id', viewValue: 'ID Osoby' },
+        { value: 'nazwa', viewValue: 'Nazwa' }, { value: 'nip', viewValue: 'NIP' },
+        { value: 'regon', viewValue: 'Regon' }, { value: 'telefon', viewValue: 'Telefon' },
+        { value: 'email', viewValue: 'E Mail' }, { value: 'ulica', viewValue: 'Ulica' },
+        { value: 'nr_domu', viewValue: 'Nr Domu' }, { value: 'gmina', viewValue: 'Gmina' },
+        { value: 'miasto', viewValue: 'Miasto' }, { value: 'kod_p', viewValue: 'Kod Pocztowy' },
+        { value: 'panstwo', viewValue: 'Państwo' }
     ],
     nieruchomosci: [
       { value: 'id', viewValue: 'ID' }, { value: 'typ', viewValue: 'Typ Nieruchomości' },
@@ -58,8 +68,11 @@ export class SearchComponent implements OnInit {
           this.service.setSearchType(this.selectedValue2);
           this.service.setKayWord(this.keyWord);
           this.router.navigate(['search/nieruchomosci']);
+      } else if (this.selectedValue1 === 'firmy') {
+          this.service.setSearchType(this.selectedValue2);
+          this.service.setKayWord(this.keyWord);
+          this.router.navigate(['search/firmy']);
       }
-
     }
   }
 }

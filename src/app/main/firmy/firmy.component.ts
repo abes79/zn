@@ -24,13 +24,13 @@ export class FirmyComponent implements OnInit {
     sqlQuery: string;
 
     selectSqlObiekty() {
-        //console.log(this.router.url);
+        // SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE firmy.id = 1 LIMIT 0 , 10;
         if (this.router.url === "/firmy") {
-            this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM firmy) as count FROM firmy LIMIT "
+            this.sqlQuery = "SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         } else {
-            this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM firmy  WHERE " + this.service.getSearchType() +
-                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM obiekty WHERE "
+            this.sqlQuery = "SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy WHERE firmy." + this.service.getSearchType() +
+                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE firmy."
                 + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         }
