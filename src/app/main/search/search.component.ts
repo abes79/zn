@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { Router } from '@angular/router';
 
@@ -35,13 +35,13 @@ export class SearchComponent implements OnInit {
       { value: 'panstwo', viewValue: 'Państwo' }
     ],
     firmy: [  
-        { value: 'id', viewValue: 'ID' }, { value: 'osoby_id', viewValue: 'ID Osoby' },
-        { value: 'nazwa', viewValue: 'Nazwa' }, { value: 'nip', viewValue: 'NIP' },
-        { value: 'regon', viewValue: 'Regon' }, { value: 'telefon', viewValue: 'Telefon' },
-        { value: 'email', viewValue: 'E Mail' }, { value: 'ulica', viewValue: 'Ulica' },
-        { value: 'nr_domu', viewValue: 'Nr Domu' }, { value: 'gmina', viewValue: 'Gmina' },
-        { value: 'miasto', viewValue: 'Miasto' }, { value: 'kod_p', viewValue: 'Kod Pocztowy' },
-        { value: 'panstwo', viewValue: 'Państwo' }
+      { value: 'firmy.id', viewValue: 'ID' }, { value: 'osoby.imie', viewValue: 'Imie Reprezentanta' },
+      { value: 'osoby.nazwisko', viewValue: 'Nazwisko Reprezentanta' }, { value: 'firmy.nazwa', viewValue: 'Nazwa' },
+      { value: 'firmy.nip', viewValue: 'NIP' }, { value: 'firmy.regon', viewValue: 'Regon' },
+      { value: 'firmy.telefon', viewValue: 'Telefon' }, { value: 'firmy.email', viewValue: 'E Mail' },
+      { value: 'firmy.ulica', viewValue: 'Ulica' }, { value: 'firmy.nr_domu', viewValue: 'Nr Domu' },
+      { value: 'firmy.gmina', viewValue: 'Gmina' }, { value: 'firmy.miasto', viewValue: 'Miasto' },
+      { value: 'firmy.kod_p', viewValue: 'Kod Pocztowy' }, { value: 'firmy.panstwo', viewValue: 'Państwo' }
     ],
     nieruchomosci: [
       { value: 'id', viewValue: 'ID' }, { value: 'typ', viewValue: 'Typ Nieruchomości' },

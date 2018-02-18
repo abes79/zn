@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -29,8 +29,8 @@ export class FirmyComponent implements OnInit {
             this.sqlQuery = "SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         } else {
-            this.sqlQuery = "SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy WHERE firmy." + this.service.getSearchType() +
-                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE firmy."
+            this.sqlQuery = "SELECT firmy.*, osoby.imie, osoby.nazwisko, (SELECT COUNT(*) FROM firmy WHERE " + this.service.getSearchType() +
+                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM firmy INNER JOIN osoby ON firmy.osoby_id = osoby.id WHERE "
                 + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         }
