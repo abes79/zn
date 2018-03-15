@@ -1,6 +1,6 @@
 ﻿<div class="edit">
   <h2>
-    Edycja firmy z ID : {{idEdit}}
+    Edycja firmy z ID : {{firmaEdit}}
   </h2>
   <div class="warn">{{_confirm}}</div>
 
@@ -11,7 +11,7 @@
         <div>
           <label>Osoba Reprezentująca</label><br />
           <input type="text" value="{{dataArray[0]['imie']}} {{dataArray[0]['nazwisko']}}" disabled />
-          <button class="button" type="button"><span>Zmień Osobę</span></button>
+          <button class="button" type="button" (click)="selectAnotherPerson()"><span>Zmień Osobę</span></button>
         </div>
         <div>
           <label>Nazwa Firmy</label>
@@ -66,4 +66,8 @@
       <button class="button" type="submit"><span>Zapisz Edycje</span></button>
     </form>
   </div>
+
+
+  <HR>
+  <router-outlet></router-outlet>
 </div>

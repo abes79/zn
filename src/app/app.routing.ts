@@ -39,83 +39,97 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     component: MainComponent,
     children: [
-      {
-        path: 'alert',
-        canActivate: [AuthGuard],
-        component: AlertComponent
-      },
-      {
-        path: 'search',
-        canActivate: [AuthGuard],
-        component: SearchComponent,
-        children: [
-          {
+        {
+            path: 'alert',
+            canActivate: [AuthGuard],
+            component: AlertComponent
+        },
+        {
+            path: 'search',
+            canActivate: [AuthGuard],
+            component: SearchComponent,
+            children: [
+                {
+                    path: 'osoby',
+                    canActivate: [AuthGuard],
+                    component: OsobyComponent
+                },
+                {
+                    path: 'nieruchomosci',
+                    canActivate: [AuthGuard],
+                    component: ObiektyComponent
+                },
+                {
+                    path: 'firmy',
+                    canActivate: [AuthGuard],
+                    component: FirmyComponent
+                }
+            ]
+        },
+        {
             path: 'osoby',
             canActivate: [AuthGuard],
             component: OsobyComponent
-          },
-          {
-              path: 'nieruchomosci',
-            canActivate: [AuthGuard],
-            component: ObiektyComponent
-          },
-          {
+        },
+        {
             path: 'firmy',
             canActivate: [AuthGuard],
             component: FirmyComponent
-          }
-        ]
-      },
-      {
-        path: 'osoby',
-        canActivate: [AuthGuard],
-        component: OsobyComponent
-      },
-      {
-        path: 'firmy',
-        canActivate: [AuthGuard],
-        component: FirmyComponent
-      },
-      {
-        path: 'nieruchomosci',
-        canActivate: [AuthGuard],
-        component: ObiektyComponent
-      },
-      {
-        path: 'umowy',
-        canActivate: [AuthGuard],
-        component: UmowyComponent
-      },
-      {
-        path: 'osoby/add',
-        canActivate: [AuthGuard],
-        component: AddOsobyComponent
-      },
-      {
-        path: 'osoby/edit',
-        canActivate: [AuthGuard],
-        component: EditOsobyComponent
-      },
-      {
-        path: 'nieruchomosci/add',
-        canActivate: [AuthGuard],
-        component: AddObiektyComponent
-      },
-      {
-        path: 'nieruchomosci/edit',
-        canActivate: [AuthGuard],
-        component: EditObiektyComponent
-      },
-      {
-        path: 'firmy/add',
-        canActivate: [AuthGuard],
-        component: AddFirmyComponent
-      },
-      {
-        path: 'firmy/edit',
-        canActivate: [AuthGuard],
-        component: EditFirmyComponent
-      }
+        },
+        {
+            path: 'nieruchomosci',
+            canActivate: [AuthGuard],
+            component: ObiektyComponent
+        },
+        {
+            path: 'umowy',
+            canActivate: [AuthGuard],
+            component: UmowyComponent
+        },
+        {
+            path: 'osoby/add',
+            canActivate: [AuthGuard],
+            component: AddOsobyComponent
+        },
+        {
+            path: 'osoby/edit',
+            canActivate: [AuthGuard],
+            component: EditOsobyComponent
+        },
+        {
+            path: 'nieruchomosci/add',
+            canActivate: [AuthGuard],
+            component: AddObiektyComponent
+        },
+        {
+            path: 'nieruchomosci/edit',
+            canActivate: [AuthGuard],
+            component: EditObiektyComponent
+        },
+        {
+            path: 'firmy/add',
+            canActivate: [AuthGuard],
+            component: AddFirmyComponent
+        },
+        {
+            path: 'firmy/edit',
+            canActivate: [AuthGuard],
+            component: EditFirmyComponent,
+            children: [
+                {
+                    path: 'search',
+                    canActivate: [AuthGuard],
+                    component: SearchComponent,
+                    children: [
+                        {
+                            path: 'osoby',
+                            canActivate: [AuthGuard],
+                            component: OsobyComponent
+                        }
+                    ]
+                }
+            ]
+        }
     ]
   },
     { path: 'login', component: LoginComponent },

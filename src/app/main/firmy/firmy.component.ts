@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -70,7 +70,7 @@ export class FirmyComponent implements OnInit {
         this.disabledNext = false;
     }
 
-    editObiekt(idObiektu) {
-        this.router.navigate(['firmy/edit'], { queryParams: { id: idObiektu } });
+    editObiekt(idObiektu, idOsoby) {
+        this.router.navigate(['firmy/edit'], { queryParams: { firma: idObiektu, osoba: idOsoby } });
     }
 }

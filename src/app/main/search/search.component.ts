@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -9,14 +10,35 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private router: Router, private service: AppService) { }
+    constructor(private router: Router, private route: ActivatedRoute, private service: AppService) { }
 
   ngOnInit() {
-  }
-  
+      //console.log(this.router.url);
+      if (this.router.url.indexOf("firmy") > 0) {
+          this.wyszukaj1 = false;
+          this.wyszukaj2 = true;
+          this.selectedValue1 = 'osoby';
+          this.wyszukiwanieInfo = 'osób';
+          this.route
+              .queryParams
+              .subscribe(params => {
+                  this.firmaEdit = params['firma'];
+                  this.selectOsoba = params['osoba'];
+              });
+      } else {
+          this.wyszukaj1 = true;
+          this.wyszukaj2 = false;
+          this.wyszukiwanieInfo = 'osób, nieruchomości, umów';
+      }
+    }
+  firmaEdit: string;
+  selectOsoba: string;
+  wyszukiwanieInfo: string;
+  wyszukaj1: boolean;
+  wyszukaj2: boolean;  
   keyWord: string = '';
-  selectedValue1: string;
   resultExisting: boolean = false;
+  selectedValue1: string;
   selectOption1 = [
     { value: 'osoby', viewValue: 'Osoby' },
     { value: 'firmy', viewValue: 'Firmy' },
@@ -60,19 +82,25 @@ export class SearchComponent implements OnInit {
     // silnik wyszukiwania
     //console.log(this.selectedValue1 + ' ' + this.selectedValue2 + ' ' + this.keyWord);
     if (this.selectedValue2) {
-      if (this.selectedValue1 === 'osoby') {
-        this.service.setSearchType(this.selectedValue2);
-        this.service.setKayWord(this.keyWord);
-        this.router.navigate(['search/osoby']);
-      } else if (this.selectedValue1 === 'nieruchomosci') {
-          this.service.setSearchType(this.selectedValue2);
-          this.service.setKayWord(this.keyWord);
-          this.router.navigate(['search/nieruchomosci']);
-      } else if (this.selectedValue1 === 'firmy') {
-          this.service.setSearchType(this.selectedValue2);
-          this.service.setKayWord(this.keyWord);
-          this.router.navigate(['search/firmy']);
-      }
+        if (this.selectedValue1 === 'osoby') {
+            if (this.router.url.indexOf("firmy") > 0) {
+                this.service.setSearchType(this.selectedValue2);
+                this.service.setKayWord(this.keyWord);
+                this.router.navigate(['firmy/edit/search/osoby'], { queryParams: { firma: this.firmaEdit, osoba: this.selectOsoba } });
+            } else {
+                this.service.setSearchType(this.selectedValue2);
+                this.service.setKayWord(this.keyWord);
+                this.router.navigate(['search/osoby']);
+            }
+        } else if (this.selectedValue1 === 'nieruchomosci') {
+            this.service.setSearchType(this.selectedValue2);
+            this.service.setKayWord(this.keyWord);
+            this.router.navigate(['search/nieruchomosci']);
+        } else if (this.selectedValue1 === 'firmy') {
+            this.service.setSearchType(this.selectedValue2);
+            this.service.setKayWord(this.keyWord);
+            this.router.navigate(['search/firmy']);
+        }
     }
   }
 }

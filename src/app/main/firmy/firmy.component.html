@@ -1,4 +1,4 @@
-<br />
+﻿<br />
 <div class="table-contener">
   <table>
     <thead>
@@ -18,7 +18,7 @@
         <td>{{data.imie}} {{data.nazwisko}}</td>
         <td>{{data.ulica}} {{data.nr_domu}}, {{data.gmina}} {{data.miasto}}</td>
         <td>{{data.telefon}}</td>
-        <td class="edit"><button class="button edit" (click)="editObiekt(data.id)"><span>EDIT</span></button></td>
+        <td class="edit"><button class="button edit" (click)="editObiekt(data.id, data.osoby_id)"><span>EDIT</span></button></td>
       </tr>
     </tbody>
   </table>

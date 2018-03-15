@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
+import { EditFirmyComponent } from './../firmy/edit-firmy/edit-firmy.component';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-osoby',
@@ -9,12 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./osoby.component.css']
 })
 export class OsobyComponent implements OnInit {
-  constructor( private router: Router, private _http: HttpClient, private service: AppService) { }
+    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService, private editFirmy: EditFirmyComponent) { }
   ngOnInit() {
     this.service.setNrPage(0);
     this.selectSqlOsoby();
+    if (this.router.url.substring(0, 11) === "/firmy/edit")
+        this.select = true;
+    else
+        this.select = false;
   }
- 
+  select: boolean;
   dataArray: any = [];
   countPages: number;
   countRows: number = 5;
@@ -24,15 +30,16 @@ export class OsobyComponent implements OnInit {
   
   selectSqlOsoby() {
     //console.log(this.router.url);
-    if (this.router.url === "/osoby") {
+      if (this.router.url.indexOf("search") > 0) {
+          this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM osoby  WHERE " + this.service.getSearchType() +
+              " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM osoby WHERE "
+              + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
+              + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+          //console.log(this.sqlQuery);
+      } else {
       this.sqlQuery= "SELECT *, (SELECT COUNT(*) FROM osoby) as count FROM osoby LIMIT "
         + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
-    } else {
-      this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM osoby  WHERE " + this.service.getSearchType() +
-        " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM osoby WHERE "
-        + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
-        + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
-    }
+      }
     let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuery + '" }';
     let jsonPost: JSON = JSON.parse(toPost);
     let _url: string = this.service.getConnectUrl();
@@ -71,5 +78,15 @@ export class OsobyComponent implements OnInit {
 
   editOsoby(idOsoby) {
     this.router.navigate(['osoby/edit'], { queryParams: { id: idOsoby } });
+  }
+
+  selectPerson(idOsoby) {
+      let firmaEdit;
+      this.route
+          .queryParams
+          .subscribe(params => {
+              firmaEdit = params['firma'];
+          });
+      this.router.navigate(['firmy/edit'], { queryParams: { firma: firmaEdit, osoba: idOsoby } }).then(() => { this.editFirmy.selectSqlObiekty(); });
   }
 }

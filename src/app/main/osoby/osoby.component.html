@@ -3,6 +3,7 @@
   <table>
     <thead>
       <tr>
+        <th *ngIf="select">SELECT</th>
         <th>ID</th>
         <th>IMIE</th>
         <th>DRUGIE IMIE</th>
@@ -15,6 +16,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of dataArray">
+        <td *ngIf="select"><button class="button select" (click)="selectPerson(data.id)"><span>Select</span></button></td>
         <td>{{data.id}}</td>
         <td>{{data.imie}}</td>
         <td>{{data.drugie_imie}}</td>

@@ -47,8 +47,9 @@ import { EditFirmyComponent } from './main/firmy/edit-firmy/edit-firmy.component
       routing
   ],
   providers: [
-    AuthGuard,
-    AppService
+      AuthGuard,
+      AppService,
+      EditFirmyComponent
   ],
   bootstrap: [AppComponent]
 })
