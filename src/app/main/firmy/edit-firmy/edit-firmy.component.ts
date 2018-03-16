@@ -19,8 +19,6 @@ export class EditFirmyComponent implements OnInit {
     _confirm: string;
     firmaEdit: number;
     selectOsoba: number;
-    sqlQuerySelect: string;
-    sqlQueryUpdate: string;
     dataArray: any = [{
         id: "",
         osoby_id: "",
@@ -45,8 +43,8 @@ export class EditFirmyComponent implements OnInit {
                 this.firmaEdit = params['firma'];
                 this.selectOsoba = params['osoba'];
             });
-        this.sqlQuerySelect = "SELECT firmy.*, osoby.imie, osoby.nazwisko FROM firmy , osoby WHERE firmy.id = " + this.firmaEdit + " AND osoby.id = " + this.selectOsoba;
-        let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
+        let sqlQuerySelect = "SELECT firmy.*, osoby.imie, osoby.nazwisko FROM firmy , osoby WHERE firmy.id = " + this.firmaEdit + " AND osoby.id = " + this.selectOsoba;
+        let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQuerySelect + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
         let _url: string = this.service.getConnectUrl();
         this._http.post(_url, jsonPost
@@ -63,20 +61,20 @@ export class EditFirmyComponent implements OnInit {
                 this.dataArray[0].osoby_id = params['osoba'];                
             });
         let arr: any = [];
-        this.sqlQueryUpdate = "UPDATE firmy SET ";
+        let sqlQueryUpdate = "UPDATE firmy SET ";
         for (var prop in this.dataArray[0]) {
             if (Boolean(this.dataArray[0][prop]) && prop !== 'id' && prop !== 'imie' && prop !== 'nazwisko') {
-                this.sqlQueryUpdate = this.sqlQueryUpdate + prop + " ='" + this.dataArray[0][prop] + "', ";
-            } else if (!Boolean(this.dataArray[0][prop])) {
-                this.sqlQueryUpdate = this.sqlQueryUpdate + prop + " = null, ";
+                sqlQueryUpdate = sqlQueryUpdate + prop + " ='" + this.dataArray[0][prop] + "', ";
+            } else if (!Boolean(this.dataArray[0][prop]) && prop !== 'imie' && prop !== 'nazwisko') {
+                sqlQueryUpdate = sqlQueryUpdate + prop + " = null, ";
             }
         }
-        this.sqlQueryUpdate = this.sqlQueryUpdate.slice(0, -2) + " WHERE id = " + this.dataArray[0]['id'];
+        sqlQueryUpdate = sqlQueryUpdate.slice(0, -2) + " WHERE id = " + this.dataArray[0]['id'];
         //------------SQL-------------
         if (confirm("Czy na pewno zapisać zmiany?!") == true) {
-            console.log(this.sqlQueryUpdate);
+            console.log(sqlQueryUpdate);
             this._confirm = "Zmiany zostały zapisane.";
-            let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQueryUpdate + '" }';
+            let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQueryUpdate + '" }';
             let jsonPost: JSON = JSON.parse(toPost);
             let _url: string = this.service.getConnectUrl();
             this._http.post(_url, jsonPost).subscribe((data) => {
@@ -90,5 +88,4 @@ export class EditFirmyComponent implements OnInit {
     selectAnotherPerson() {
         this.router.navigate(['firmy/edit/search'], { queryParams: { firma: this.firmaEdit, osoba: this.selectOsoba } });
     }
-
 }

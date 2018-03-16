@@ -15,8 +15,14 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
       //console.log(this.router.url);
       if (this.router.url.indexOf("firmy") > 0) {
-          this.wyszukaj1 = false;
-          this.wyszukaj2 = true;
+          this.wyszukaj = false;
+          if (this.router.url.indexOf("add") > 0) {
+              this.filtrujAdd = true;
+              this.filtrujEdit = false;
+          } else {
+              this.filtrujAdd = false;
+              this.filtrujEdit = true;
+          }
           this.selectedValue1 = 'osoby';
           this.wyszukiwanieInfo = 'osób';
           this.route
@@ -26,16 +32,17 @@ export class SearchComponent implements OnInit {
                   this.selectOsoba = params['osoba'];
               });
       } else {
-          this.wyszukaj1 = true;
-          this.wyszukaj2 = false;
+          this.wyszukaj = true;
+          this.filtrujEdit = false;
           this.wyszukiwanieInfo = 'osób, nieruchomości, umów';
       }
     }
   firmaEdit: string;
   selectOsoba: string;
   wyszukiwanieInfo: string;
-  wyszukaj1: boolean;
-  wyszukaj2: boolean;  
+  wyszukaj: boolean;
+  filtrujAdd: boolean;
+  filtrujEdit: boolean;  
   keyWord: string = '';
   resultExisting: boolean = false;
   selectedValue1: string;
@@ -86,7 +93,10 @@ export class SearchComponent implements OnInit {
             if (this.router.url.indexOf("firmy") > 0) {
                 this.service.setSearchType(this.selectedValue2);
                 this.service.setKayWord(this.keyWord);
-                this.router.navigate(['firmy/edit/search/osoby'], { queryParams: { firma: this.firmaEdit, osoba: this.selectOsoba } });
+                if (this.router.url.indexOf("firmy/edit") > 0) 
+                    this.router.navigate(['firmy/edit/search/osoby'], { queryParams: { firma: this.firmaEdit, osoba: this.selectOsoba } });
+                else if (this.router.url.indexOf("firmy/add") > 0)
+                    this.router.navigate(['firmy/add/search/osoby']);
             } else {
                 this.service.setSearchType(this.selectedValue2);
                 this.service.setKayWord(this.keyWord);

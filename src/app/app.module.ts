@@ -49,6 +49,7 @@ import { EditFirmyComponent } from './main/firmy/edit-firmy/edit-firmy.component
   providers: [
       AuthGuard,
       AppService,
+      AddFirmyComponent,
       EditFirmyComponent
   ],
   bootstrap: [AppComponent]

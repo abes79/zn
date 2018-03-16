@@ -41,8 +41,17 @@ input, select {
   outline: none;
 }
 
-input:focus, select:focus {
-  border: 2px solid #555;
+  input:disabled {
+    width: 58%;
+    background: #ffffff;
+  }
+
+  input:focus, select {
+    border: 2px solid #555;
+  }
+
+.button {
+  vertical-align: middle;
 }
 
 .button-contener {
@@ -51,7 +60,6 @@ input:focus, select:focus {
 }
 
 .button {
-  vertical-align: middle;
   border: 2px solid #bbb;
   border: none;
   border-radius: 5px;
@@ -63,34 +71,31 @@ input:focus, select:focus {
   color: #000;
   transition: all 0.5s;
   cursor: pointer;
-  width: 200px;
+  width: 190px;
   margin: 5px;
 }
 
-.button.osoba {
-  float: right;
-}
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.3s;
-}
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s;
+  }
 
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.3s;
-}
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.3s;
+    }
 
-.button:hover span {
-  padding-right: 20px;
-}
+  .button:hover span {
+    padding-right: 20px;
+  }
 
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }

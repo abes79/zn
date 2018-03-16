@@ -18,19 +18,19 @@
         </div>
         <div>
           <label>Rok Budowy</label>
-          <input type="number" min="1000" max="9999" name="rok_budowy" [(ngModel)]="dataArray[0]['rok_budowy']" />
+          <input type="text" name="rok_budowy" maxlength="4" [(ngModel)]="dataArray[0]['rok_budowy']" />
         </div>
         <div>
           <label>Kod</label>
-          <input type="text" name="kod" [(ngModel)]="dataArray[0]['kod']" />
+          <input type="text" name="kod" maxlength="45" [(ngModel)]="dataArray[0]['kod']" />
         </div>
         <div>
           <label>Piwnica</label>
-          <input type="text" name="piwnica" [(ngModel)]="dataArray[0]['piwnica']" />
+          <input type="text" name="piwnica" maxlength="5" [(ngModel)]="dataArray[0]['piwnica']" />
         </div>
         <div>
           <label>Garaż</label>
-          <input type="text" name="garaz" [(ngModel)]="dataArray[0]['garaz']" />
+          <input type="text" name="garaz" maxlength="5" [(ngModel)]="dataArray[0]['garaz']" />
         </div>
         <div>
           <label>Notka - max 350 znaków, pozostało: {{350 - dataArray[0]['text'].length}}</label>
@@ -41,27 +41,27 @@
         <h3>Adres</h3>
         <div>
           <label>Ulica</label>
-          <input type="text" name="ulica" [(ngModel)]="dataArray[0]['ulica']" />
+          <input type="text" name="ulica" maxlength="45" [(ngModel)]="dataArray[0]['ulica']" />
         </div>
         <div>
           <label>Nr Domu / Mieszkania</label>
-          <input type="text" name="nr_domu" [(ngModel)]="dataArray[0]['nr_domu']" />
+          <input type="text" name="nr_domu" maxlength="12" [(ngModel)]="dataArray[0]['nr_domu']" />
         </div>
         <div>
           <label>Gmina / Dzielnica</label>
-          <input type="text" name="gmina" [(ngModel)]="dataArray[0]['gmina']" />
+          <input type="text" name="gmina" maxlength="45" [(ngModel)]="dataArray[0]['gmina']" />
         </div>
         <div>
           <label>Kod Pocztowy</label>
-          <input type="text" name="kod_p" [(ngModel)]="dataArray[0]['kod_p']" />
+          <input type="text" name="kod_p" maxlength="12" [(ngModel)]="dataArray[0]['kod_p']" />
         </div>
         <div>
           <label>Miasto</label>
-          <input type="text" name="miasto" [(ngModel)]="dataArray[0]['miasto']" />
+          <input type="text" name="miasto" maxlength="45" [(ngModel)]="dataArray[0]['miasto']" />
         </div>
         <div>
           <label>Państwo</label>
-          <input type="text" name="panstwo" [(ngModel)]="dataArray[0]['panstwo']" />
+          <input type="text" name="panstwo" maxlength="25" [(ngModel)]="dataArray[0]['panstwo']" />
         </div>
       </div>
       <div class="clear"></div>

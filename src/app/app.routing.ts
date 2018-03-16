@@ -109,7 +109,21 @@ const appRoutes: Routes = [
         {
             path: 'firmy/add',
             canActivate: [AuthGuard],
-            component: AddFirmyComponent
+            component: AddFirmyComponent,
+            children: [
+                {
+                    path: 'search',
+                    canActivate: [AuthGuard],
+                    component: SearchComponent,
+                    children: [
+                        {
+                            path: 'osoby',
+                            canActivate: [AuthGuard],
+                            component: OsobyComponent
+                        }
+                    ]
+                }
+            ]
         },
         {
             path: 'firmy/edit',

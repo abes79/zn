@@ -26,11 +26,11 @@ export class ObiektyComponent implements OnInit {
     selectSqlObiekty() {
         //console.log(this.router.url);
         if (this.router.url === "/nieruchomosci") {
-            this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM obiekty) as count FROM obiekty LIMIT "
+            this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM nieruchomosci) as count FROM nieruchomosci LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         } else {
-            this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM obiekty  WHERE " + this.service.getSearchType() +
-                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM obiekty WHERE "
+            this.sqlQuery = "SELECT *, (SELECT COUNT(*) FROM nieruchomosci  WHERE " + this.service.getSearchType() +
+                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM nieruchomosci WHERE "
                 + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         }

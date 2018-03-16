@@ -55,7 +55,7 @@ export class EditObiektyComponent implements OnInit {
     ];
 
     selectSqlObiekty() {
-        this.sqlQuerySelect = "SELECT * FROM obiekty WHERE id = " + this.idEdit;
+        this.sqlQuerySelect = "SELECT * FROM nieruchomosci WHERE id = " + this.idEdit;
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuerySelect + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
         let _url: string = this.service.getConnectUrl();
@@ -73,7 +73,7 @@ export class EditObiektyComponent implements OnInit {
     saveEdit() {
         // Składanie zapytanie UPDATE
         let arr: any = [];
-        this.sqlQueryUpdate = "UPDATE obiekty SET ";
+        this.sqlQueryUpdate = "UPDATE nieruchomosci SET ";
         for (var prop in this.dataArray[0]) {
             if (Boolean(this.dataArray[0][prop]) && prop !== 'id') {
                 this.sqlQueryUpdate = this.sqlQueryUpdate + prop + " ='" + this.dataArray[0][prop] + "', ";

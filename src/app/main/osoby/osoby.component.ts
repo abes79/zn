@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { EditFirmyComponent } from './../firmy/edit-firmy/edit-firmy.component';
+import { AddFirmyComponent } from './../firmy/add-firmy/add-firmy.component';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
@@ -11,11 +12,11 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./osoby.component.css']
 })
 export class OsobyComponent implements OnInit {
-    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService, private editFirmy: EditFirmyComponent) { }
+    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService, private editFirmy: EditFirmyComponent, private addFirmy: AddFirmyComponent) { }
   ngOnInit() {
     this.service.setNrPage(0);
     this.selectSqlOsoby();
-    if (this.router.url.substring(0, 11) === "/firmy/edit")
+    if (this.router.url.indexOf("firmy") > 0)
         this.select = true;
     else
         this.select = false;
@@ -87,6 +88,13 @@ export class OsobyComponent implements OnInit {
           .subscribe(params => {
               firmaEdit = params['firma'];
           });
-      this.router.navigate(['firmy/edit'], { queryParams: { firma: firmaEdit, osoba: idOsoby } }).then(() => { this.editFirmy.selectSqlObiekty(); });
+      if (this.router.url.indexOf("firmy/edit") > 0)
+          this.router.navigate(['firmy/edit'], { queryParams: { firma: firmaEdit, osoba: idOsoby } }).then(() => {
+              this.editFirmy.selectSqlObiekty();
+          });
+      else if (this.router.url.indexOf("firmy/add") > 0)
+          this.router.navigate(['firmy/add'], { queryParams: { osoba: idOsoby } }).then(() => {
+              this.addFirmy.selectSqlIdOsoby();
+          });
   }
 }

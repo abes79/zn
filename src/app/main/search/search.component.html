@@ -8,7 +8,7 @@
       <div class="left">
         <label>Wybierz czego szukamy: </label><br />
 
-        <select *ngIf="wyszukaj1" [(ngModel)]="selectedValue1" name="select1">
+        <select *ngIf="wyszukaj" [(ngModel)]="selectedValue1" name="select1">
           <option *ngFor="let opt1 of selectOption1" [ngValue]="opt1.value">
             {{opt1.viewValue}}
           </option>
@@ -22,16 +22,19 @@
       </div>
         <div class="right">
           <label>Słowo kluczowe: </label>
-          <input type="text" [(ngModel)]="keyWord" name="search" />
+          <input type="text" maxlength="63" [(ngModel)]="keyWord" name="search" />
         </div>
         <div class="clear"></div>
         <br />
-        <div *ngIf="wyszukaj1">
+        <div *ngIf="wyszukaj">
           <button class="button" type="submit" [routerLink]="['/search']"><span>Wyszukaj</span></button>
         </div>
-        <div *ngIf="wyszukaj2">
+        <div *ngIf="filtrujEdit">
           <button class="button" type="submit" [routerLink]="['/firmy/edit/search']" [queryParams]="{firma: firmaEdit, osoba: selectOsoba}"><span>Filtruj</span></button>
         </div>
+      <div *ngIf="filtrujAdd">
+        <button class="button" type="submit" [routerLink]="['/firmy/add/search']"><span>Filtruj</span></button>
+      </div>
     </form>
   </div>
 

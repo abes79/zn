@@ -43,7 +43,7 @@ export class AddObiektyComponent implements OnInit {
     saveAdd() {
         // Składanie zapytanie INSERT
         let arr: any = [];
-        this.sqlQueryAdd = "INSERT INTO obiekty ( typ, rok_budowy, kod, garaz, piwnica, text, zalacznik, ulica, nr_domu, gmina, kod_p, miasto, panstwo ) VALUES ( ";
+        this.sqlQueryAdd = "INSERT INTO nieruchomosci ( typ, rok_budowy, kod, garaz, piwnica, text, zalacznik, ulica, nr_domu, gmina, kod_p, miasto, panstwo ) VALUES ( ";
 
         for (var prop in this.dataArray[0]) {
             if (Boolean(this.dataArray[0][prop]) ) {

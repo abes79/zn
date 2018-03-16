@@ -15,19 +15,19 @@
         </div>
         <div>
           <label>Nazwa Firmy</label>
-          <input type="text" name="nazwa" [(ngModel)]="dataArray[0]['nazwa']" />
+          <input type="text" name="nazwa" maxlength="200" [(ngModel)]="dataArray[0]['nazwa']" />
         </div>
         <div>
           <label>NIP</label>
-          <input type="text" name="nip" [(ngModel)]="dataArray[0]['nip']" />
+          <input type="text" name="nip" maxlength="13" [(ngModel)]="dataArray[0]['nip']" />
         </div>
         <div>
           <label>Regon</label>
-          <input type="text" name="regon" [(ngModel)]="dataArray[0]['regon']" />
+          <input type="text" name="regon" maxlength="10" [(ngModel)]="dataArray[0]['regon']" />
         </div>
         <div>
           <label>Telefon</label>
-          <input type="text" maxlength="12" name="telefon" [(ngModel)]="dataArray[0]['telefon']" />
+          <input type="text" name="telefon" maxlength="12" [(ngModel)]="dataArray[0]['telefon']" />
         </div>
         <div>
           <label>E Mail</label>
@@ -38,27 +38,27 @@
         <h3>Adres</h3>
         <div>
           <label>Ulica</label>
-          <input type="text" name="ulica" [(ngModel)]="dataArray[0]['ulica']" />
+          <input type="text" name="ulica" maxlength="40" [(ngModel)]="dataArray[0]['ulica']" />
         </div>
         <div>
           <label>Nr Domu / Mieszkania</label>
-          <input type="text" name="nr_domu" [(ngModel)]="dataArray[0]['nr_domu']" />
+          <input type="text" name="nr_domu" maxlength="12" [(ngModel)]="dataArray[0]['nr_domu']" />
         </div>
         <div>
           <label>Gmina / Dzielnica</label>
-          <input type="text" name="gmina" [(ngModel)]="dataArray[0]['gmina']" />
+          <input type="text" name="gmina" maxlength="30" [(ngModel)]="dataArray[0]['gmina']" />
         </div>
         <div>
           <label>Kod Pocztowy</label>
-          <input type="text" name="kod_p" [(ngModel)]="dataArray[0]['kod_p']" />
+          <input type="text" name="kod_p" maxlength="10" [(ngModel)]="dataArray[0]['kod_p']" />
         </div>
         <div>
           <label>Miasto</label>
-          <input type="text" name="miasto" [(ngModel)]="dataArray[0]['miasto']" />
+          <input type="text" name="miasto" maxlength="40" [(ngModel)]="dataArray[0]['miasto']" />
         </div>
         <div>
           <label>Państwo</label>
-          <input type="text" name="panstwo" [(ngModel)]="dataArray[0]['panstwo']" />
+          <input type="text" name="panstwo" maxlength="30" [(ngModel)]="dataArray[0]['panstwo']" />
         </div>
       </div>
       <div class="clear"></div>
@@ -66,8 +66,6 @@
       <button class="button" type="submit"><span>Zapisz Edycje</span></button>
     </form>
   </div>
-
-
   <HR>
   <router-outlet></router-outlet>
 </div>
