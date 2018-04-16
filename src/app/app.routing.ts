@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router, Routes, RouterModule } from '@angular/router';
 
 import { AppService } from './app.service';
@@ -116,12 +116,40 @@ const appRoutes: Routes = [
         {
             path: 'nieruchomosci/add',
             canActivate: [AuthGuard],
-            component: AddObiektyComponent
+            component: AddObiektyComponent,
+            children: [
+              {
+                path: 'search',
+                canActivate: [AuthGuard],
+                component: SearchComponent,
+                children: [
+                  {
+                    path: 'osoby',
+                    canActivate: [AuthGuard],
+                    component: OsobyComponent
+                  }
+                ]
+              }
+            ]
         },
         {
             path: 'nieruchomosci/edit',
             canActivate: [AuthGuard],
-            component: EditObiektyComponent
+            component: EditObiektyComponent,
+            children: [
+              {
+                path: 'search',
+                canActivate: [AuthGuard],
+                component: SearchComponent,
+                children: [
+                  {
+                    path: 'osoby',
+                    canActivate: [AuthGuard],
+                    component: OsobyComponent
+                  }
+                ]
+              }
+            ]
         },
         {
             path: 'firmy/add',

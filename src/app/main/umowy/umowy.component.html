@@ -1,4 +1,4 @@
-﻿<br />
+<br />
 <div class="table-contener">
   <table>
     <thead>
@@ -20,7 +20,7 @@
         <td>{{data.typ}}</td>
         <td>{{data.czas_od}}</td>
         <td>{{data.czas_do}}</td>
-        <td class="edit"><button class="button edit" (click)="editUmowy(data.id, data.osoby_id)"><span>EDIT</span></button></td>
+        <td class="edit"><button class="button edit" (click)="editUmowy(data.id, data.osoby_id, data.nieruchomosci_id)"><span>EDIT</span></button></td>
       </tr>
     </tbody>
   </table>
@@ -33,5 +33,5 @@
   <button class="button action" (click)="nextPage()" [disabled]="disabledNext"><span>Następna</span></button>
 </div>
 <div class="right">
-  <button class="button action" [routerLink]="['/umowy/add']"><span>Dodaj firmę</span></button>
+  <button class="button action" [routerLink]="['/umowy/add']"><span>Dodaj umowę</span></button>
 </div>

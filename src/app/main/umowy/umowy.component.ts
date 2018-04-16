@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -70,7 +70,7 @@ export class UmowyComponent implements OnInit {
         this.disabledNext = false;
     }
 
-    editUmowy(idUmowy, idOsoby) {
-        this.router.navigate(['umowy/edit'], { queryParams: { firma: idUmowy, osoba: idOsoby } });
+    editUmowy(idUmowy, idOsoby, idNieruchomosci) {
+        this.router.navigate(['umowy/edit'], { queryParams: { umowa: idUmowy, osoba: idOsoby, nieruchomosc: idNieruchomosci } });
     }
 }

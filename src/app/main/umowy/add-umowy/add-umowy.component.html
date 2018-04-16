@@ -1,3 +1,72 @@
-<p>
-  add-umowy works!
-</p>
+<div class="add">
+  <h2>
+    Dodawanie nowej umowy
+  </h2>
+  <div class="warn">{{_confirm}}</div>
+
+  <div class="form">
+    <form (submit)="saveAdd()">
+      <div class="left">
+        <h3>Dane umowy</h3>
+        <div>
+          <label>Kontrahent</label><br />
+          <input class="disabled" type="text" value="{{dataArray[0]['imie']}} {{dataArray[0]['nazwisko']}}" disabled />
+          <button class="button" type="button" (click)="selectAnotherPerson()"><span>Wybierz Osobę</span></button>
+        </div>
+        <div>
+          <label>Nieruchomość</label><br />
+          <input class="disabled" type="text" value="{{dataArray[0]['ulica']}} {{dataArray[0]['nr_domu']}}" disabled />
+          <button class="button" type="button" (click)="selectAnotherProperty()"><span>Wybierz Obiekt</span></button>
+        </div>
+        <div>
+          <label>Typ</label>
+          <input type="text" name="typ" maxlength="10" [(ngModel)]="dataArray[0]['typ']" />
+        </div>
+        <div>
+          <label>Strona</label>
+          <input type="text" name="strna" maxlength="10" [(ngModel)]="dataArray[0]['strona']" />
+        </div>
+        <div>
+          <label>Data Od</label>
+          <input type="date" name="czas_od" maxlength="10" [(ngModel)]="dataArray[0]['czas_od']" />
+        </div>
+        <div>
+          <label>Data Do</label>
+          <input type="date" name="czas_do" maxlength="10" [(ngModel)]="dataArray[0]['czas_do']" />
+        </div>
+      </div>
+      <div class="right">
+        <h3>Opiewa na kwotę</h3>
+        <div>
+          <label>kwota</label>
+          <input type="text" name="kwota" maxlength="15" [(ngModel)]="dataArray[0]['kwota']" />
+        </div>
+        <div>
+          <label>Numer Konta Bankowego </label>
+          <input type="text" name="bank" maxlength="28" [(ngModel)]="dataArray[0]['bank']" />
+        </div>
+        <div>
+          <label>Czynsz</label>
+          <input type="text" name="czynsz" maxlength="5" [(ngModel)]="dataArray[0]['czynsz']" />
+        </div>
+        <div>
+          <label>Media</label>
+          <input type="text" name="media" maxlength="5" [(ngModel)]="dataArray[0]['media']" />
+        </div>
+        <div>
+          <label>Prowizja</label>
+          <input type="text" name="prowizja" maxlength="5" [(ngModel)]="dataArray[0]['prowizja']" />
+        </div>
+        <div>
+          <label>Zalacznik</label><br />
+          <input type="text" name="zalacznik" maxlength="45" [(ngModel)]="dataArray[0]['zalacznik']" disabled />
+        </div>
+      </div>
+      <div class="clear"></div>
+      <br />
+      <button class="button" type="submit"><span>Zapisz Edycje</span></button>
+    </form>
+  </div>
+  <HR>
+  <router-outlet></router-outlet>
+</div>
