@@ -17,6 +17,8 @@ import { AddObiektyComponent } from './main/obiekty/add-obiekty/add-obiekty.comp
 import { EditObiektyComponent } from './main/obiekty/edit-obiekty/edit-obiekty.component';
 import { AddFirmyComponent } from './main/firmy/add-firmy/add-firmy.component';
 import { EditFirmyComponent } from './main/firmy/edit-firmy/edit-firmy.component';
+import { AddUmowyComponent } from './main/umowy/add-umowy/add-umowy.component';
+import { EditUmowyComponent } from './main/umowy/edit-umowy/edit-umowy.component';
 
 @Injectable()
 export class AuthGuard   {
@@ -63,6 +65,11 @@ const appRoutes: Routes = [
                     path: 'firmy',
                     canActivate: [AuthGuard],
                     component: FirmyComponent
+                },
+                {
+                    path: 'umowy',
+                    canActivate: [AuthGuard],
+                    component: UmowyComponent
                 }
             ]
         },
@@ -85,6 +92,16 @@ const appRoutes: Routes = [
             path: 'umowy',
             canActivate: [AuthGuard],
             component: UmowyComponent
+        },
+        {
+            path: 'umowy/add',
+            canActivate: [AuthGuard],
+            component: AddUmowyComponent
+        },
+        {
+            path: 'umowy/edit',
+            canActivate: [AuthGuard],
+            component: EditUmowyComponent
         },
         {
             path: 'osoby/add',

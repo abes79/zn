@@ -79,9 +79,9 @@ export class SearchComponent implements OnInit {
       { value: 'kod_p', viewValue: 'Kod Pocztowy' }, { value: 'panstwo', viewValue: 'Państwo' }
     ],
     umowy: [
-      { value: 'id', viewValue: 'ID' }, { value: 'typ', viewValue: 'Typ Umowy' },
+      { value: 'umowy.id', viewValue: 'ID' }, { value: 'umowy.typ', viewValue: 'Typ Umowy' },
       { value: 'czas_od', viewValue: 'Podpisana Od' }, { value: 'czas_do', viewValue: 'Podpisana Do' },
-      { value: 'osoby_id', viewValue: 'ID Osoby' }, { value: 'obiekty_id', viewValue: 'ID Nieruchomiści' }
+      { value: 'osoby_id', viewValue: 'ID Osoby' }, { value: 'nieruchomosci_id', viewValue: 'ID Nieruchomiści' }
     ]
   }];
 
@@ -110,7 +110,11 @@ export class SearchComponent implements OnInit {
             this.service.setSearchType(this.selectedValue2);
             this.service.setKayWord(this.keyWord);
             this.router.navigate(['search/firmy']);
-        }
+        } else if (this.selectedValue1 === 'umowy') {
+        this.service.setSearchType(this.selectedValue2);
+        this.service.setKayWord(this.keyWord);
+        this.router.navigate(['search/umowy']);
+    }
     }
   }
 }

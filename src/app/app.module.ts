@@ -20,6 +20,8 @@ import { AddObiektyComponent } from './main/obiekty/add-obiekty/add-obiekty.comp
 import { EditObiektyComponent } from './main/obiekty/edit-obiekty/edit-obiekty.component';
 import { AddFirmyComponent } from './main/firmy/add-firmy/add-firmy.component';
 import { EditFirmyComponent } from './main/firmy/edit-firmy/edit-firmy.component';
+import { AddUmowyComponent } from './main/umowy/add-umowy/add-umowy.component';
+import { EditUmowyComponent } from './main/umowy/edit-umowy/edit-umowy.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { EditFirmyComponent } from './main/firmy/edit-firmy/edit-firmy.component
       EditObiektyComponent,
       FirmyComponent,
       AddFirmyComponent,
-      EditFirmyComponent
+      EditFirmyComponent,
+      AddUmowyComponent,
+      EditUmowyComponent,
   ],
   imports: [
       BrowserModule,
