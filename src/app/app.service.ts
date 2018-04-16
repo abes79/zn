@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+﻿import { Component, Injectable } from '@angular/core';
 
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AppService {
 
   constructor() {
     this.connectUrl = 'http://abes79.linuxpl.info/zn/db_sql.php';
-    //this.connectUrl = 'http://192.168.0.161/db_sql.php';
+    //this.connectUrl = 'http://zn.prodoma.pl/db/db_sql.php';
     this.isUserLogin = false;
     this.userName = '';
     this.searchType = '';

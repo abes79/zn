@@ -11,8 +11,8 @@ import { AppService } from './../app.service';
 
 export class LoginComponent {
 
-  userLogin: string = '';
-  userPassword: string = '';
+  userLogin: string = 'abes';
+  userPassword: string = 'abes';
   dataArray: any = [];
   stylesWarn = { };
   
