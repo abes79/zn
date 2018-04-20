@@ -13,7 +13,7 @@ export class EditFirmyComponent implements OnInit {
     constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService) { }
 
     ngOnInit() {
-        this.selectSqlObiekty();
+        this.selectSqlOsoby();
     }
 
     _confirm: string;
@@ -36,7 +36,7 @@ export class EditFirmyComponent implements OnInit {
     }];
 
     // SELECT firmy.*, osoby.imie, osoby.nazwisko FROM firmy , osoby WHERE firmy.id = 2 AND osoby.id = 3
-    selectSqlObiekty() {
+    selectSqlOsoby() {
         this.route
             .queryParams
             .subscribe(params => {

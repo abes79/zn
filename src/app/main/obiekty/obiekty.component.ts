@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { AddUmowyComponent } from './../umowy/add-umowy/add-umowy.component';
+import { EditUmowyComponent } from './../umowy/edit-umowy/edit-umowy.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-obiekty',
@@ -10,12 +12,17 @@ import { Router } from '@angular/router';
 })
 export class ObiektyComponent implements OnInit {
     
-    constructor(private router: Router, private _http: HttpClient, private service: AppService) { }
+    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService,
+        private addUmowy: AddUmowyComponent, private editUmowy: EditUmowyComponent) { }
     ngOnInit() {
         this.service.setNrPage(0);
         this.selectSqlObiekty();
+        if (this.router.url.indexOf("umowy") > 0)
+            this.select = true;
+        else
+            this.select = false;
     }
-
+    select: boolean;
     dataArray: any = [];
     countPages: number;
     countRows: number = 5;
@@ -72,5 +79,24 @@ export class ObiektyComponent implements OnInit {
 
     editObiekt(idObiektu) {
         this.router.navigate(['nieruchomosci/edit'], { queryParams: { id: idObiektu } });
+    }
+
+    selectProperty(idNieruchomosci) {
+        let umowaEdit;
+        let selectKontrahent;
+        this.route
+            .queryParams
+            .subscribe(params => {
+                umowaEdit = params['umowa'];
+                selectKontrahent = params['kontrahent'];
+            });
+        if (this.router.url.indexOf("umowy/add") > 0)
+            this.router.navigate(['umowy/add'], { queryParams: { kontrahent: selectKontrahent, nieruchomosc: idNieruchomosci } }).then(() => {
+                this.addUmowy.selectSqlObiekty();
+            });
+        else if (this.router.url.indexOf("umowy/edit") > 0)
+            this.router.navigate(['umowy/edit'], { queryParams: { umowa: umowaEdit, kontrahent: selectKontrahent, nieruchomosc: idNieruchomosci } }).then(() => {
+                this.editUmowy.selectSqlObiekty();
+            });
     }
 }

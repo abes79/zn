@@ -2,6 +2,8 @@
 import { AppService } from './../../app.service';
 import { EditFirmyComponent } from './../firmy/edit-firmy/edit-firmy.component';
 import { AddFirmyComponent } from './../firmy/add-firmy/add-firmy.component';
+import { AddUmowyComponent } from './../umowy/add-umowy/add-umowy.component';
+import { EditUmowyComponent } from './../umowy/edit-umowy/edit-umowy.component';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
@@ -12,11 +14,12 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./osoby.component.css']
 })
 export class OsobyComponent implements OnInit {
-    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService, private editFirmy: EditFirmyComponent, private addFirmy: AddFirmyComponent) { }
+    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService,
+        private editFirmy: EditFirmyComponent, private addFirmy: AddFirmyComponent, private addUmowy: AddUmowyComponent, private editUmowy: EditUmowyComponent) { }
   ngOnInit() {
     this.service.setNrPage(0);
     this.selectSqlOsoby();
-    if (this.router.url.indexOf("firmy") > 0)
+    if (this.router.url.indexOf("firmy") > 0 || this.router.url.indexOf("umowy") > 0)
         this.select = true;
     else
         this.select = false;
@@ -83,18 +86,32 @@ export class OsobyComponent implements OnInit {
 
   selectPerson(idOsoby) {
       let firmaEdit;
+      let umowaEdit;
+      let selectKontrahent;
+      let selectNieruchomosc;
       this.route
           .queryParams
           .subscribe(params => {
               firmaEdit = params['firma'];
+              umowaEdit = params['umowa'];
+              selectKontrahent = params['kontrahent'];
+              selectNieruchomosc = params['nieruchomosc'];
           });
-      if (this.router.url.indexOf("firmy/edit") > 0)
-          this.router.navigate(['firmy/edit'], { queryParams: { firma: firmaEdit, osoba: idOsoby } }).then(() => {
-              this.editFirmy.selectSqlObiekty();
-          });
-      else if (this.router.url.indexOf("firmy/add") > 0)
+      if (this.router.url.indexOf("firmy/add") > 0)
           this.router.navigate(['firmy/add'], { queryParams: { osoba: idOsoby } }).then(() => {
               this.addFirmy.selectSqlIdOsoby();
+          });
+      else if (this.router.url.indexOf("firmy/edit") > 0)
+          this.router.navigate(['firmy/edit'], { queryParams: { firma: firmaEdit, osoba: idOsoby } }).then(() => {
+              this.editFirmy.selectSqlOsoby();
+          });
+      else if (this.router.url.indexOf("umowy/add") > 0)
+          this.router.navigate(['umowy/add'], { queryParams: { kontrahent: idOsoby, nieruchomosc: selectNieruchomosc } }).then(() => {
+              this.addUmowy.selectSqlObiekty();
+          });
+      else if (this.router.url.indexOf("umowy/edit") > 0)
+          this.router.navigate(['umowy/edit'], { queryParams: { umowa: umowaEdit, kontrahent: idOsoby, nieruchomosc: selectNieruchomosc } }).then(() => {
+              this.editUmowy.selectSqlObiekty();
           });
   }
 }

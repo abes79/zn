@@ -3,6 +3,7 @@
   <table>
     <thead>
       <tr>
+        <th *ngIf="select">SELECT</th>
         <th>ID</th>
         <th>TYP</th>
         <th>ADRES</th>
@@ -12,6 +13,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of dataArray">
+        <td *ngIf="select"><button class="button select" (click)="selectProperty(data.id)"><span>Select</span></button></td>
         <td>{{data.id}}</td>
         <td>{{data.typ}}</td>
         <td>{{data.ulica}} {{data.nr_domu}}, {{data.gmina}} {{data.miasto}}</td>

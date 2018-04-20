@@ -54,7 +54,9 @@ import { EditUmowyComponent } from './main/umowy/edit-umowy/edit-umowy.component
       AuthGuard,
       AppService,
       AddFirmyComponent,
-      EditFirmyComponent
+      EditFirmyComponent,
+      AddUmowyComponent,
+      EditUmowyComponent
   ],
   bootstrap: [AppComponent]
 })

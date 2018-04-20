@@ -53,7 +53,6 @@ export class AddObiektyComponent implements OnInit {
             }
         }
         this.sqlQueryAdd = this.sqlQueryAdd.slice(0, -2) + " ) ";
-        console.log(this.sqlQueryAdd);
         //------------SQL-------------
         if (confirm("Czy na pewno dodać nową nieruchomość?!") == true) {
             this._confirm = "Nowa nieruchomość została dodana.";

@@ -14,31 +14,49 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
       //console.log(this.router.url);
-      if (this.router.url.indexOf("firmy") > 0) {
+      if (this.router.url.indexOf("firmy") > 0 || this.router.url.indexOf("umowy") > 0) {
           this.wyszukaj = false;
-          if (this.router.url.indexOf("add") > 0) {
-              this.filtrujAdd = true;
-              this.filtrujEdit = false;
-          } else {
-              this.filtrujAdd = false;
-              this.filtrujEdit = true;
-          }
-          this.selectedValue1 = 'osoby';
-          this.wyszukiwanieInfo = 'osób';
           this.route
               .queryParams
               .subscribe(params => {
                   this.firmaEdit = params['firma'];
-                  this.selectOsoba = params['osoba'];
+                  this.umowaEdit = params['umowa'];
+                  this.selectKontrahent = params['kontrahent'];
+                  this.selectNieruchomosc = params['nieruchomosc'];
+                  this.selectSearch = params['search'];
               });
+          if (this.selectSearch == 'property') {
+              this.selectedValue1 = 'nieruchomosci';
+              this.wyszukiwanieInfo = 'nieruchomości';
+          } else {
+              this.selectedValue1 = 'osoby';
+              this.wyszukiwanieInfo = 'osób';
+          }
+          //ścieżka URL pod button 
+          if (this.router.url.indexOf("/firmy/add") > 0) {
+              this.routerLink = '/firmy/add/search';
+          } else if (this.router.url.indexOf("/firmy/edit") > 0) {
+              this.routerLink = "/firmy/edit/search";
+          } else if (this.router.url.indexOf("/umowy/add") > 0) {
+              this.routerLink = '/umowy/add/search';
+          } else if (this.router.url.indexOf("/umowy/edit") > 0) {
+              this.routerLink = '/umowy/edit/search';
+          }
+          
       } else {
           this.wyszukaj = true;
           this.filtrujEdit = false;
-          this.wyszukiwanieInfo = 'osób, nieruchomości, umów';
+          this.wyszukiwanieInfo = 'osób, firm, nieruchomości, umów';
+          this.routerLink = "/search";
       }
     }
+  selectSearch: string;
+  routerLink: string;
   firmaEdit: string;
+  umowaEdit: string;
   selectOsoba: string;
+  selectKontrahent: string;
+  selectNieruchomosc: string;
   wyszukiwanieInfo: string;
   wyszukaj: boolean;
   filtrujAdd: boolean;
@@ -79,8 +97,8 @@ export class SearchComponent implements OnInit {
       { value: 'kod_p', viewValue: 'Kod Pocztowy' }, { value: 'panstwo', viewValue: 'Państwo' }
     ],
     umowy: [
-      { value: 'umowy.id', viewValue: 'ID' }, { value: 'umowy.typ', viewValue: 'Typ Umowy' },
-      { value: 'czas_od', viewValue: 'Podpisana Od' }, { value: 'czas_do', viewValue: 'Podpisana Do' },
+      { value: 'umowy.id', viewValue: 'ID' }, { value: 'strona', viewValue: 'Strona Umowy' }, { value: 'umowy.typ', viewValue: 'Typ Umowy' },
+      { value: 'czas_od', viewValue: 'Podpisana Od' }, { value: 'czas_do', viewValue: 'Podpisana Do' }, { value: 'kwota', viewValue: 'Kwota' },
       { value: 'osoby_id', viewValue: 'ID Osoby' }, { value: 'nieruchomosci_id', viewValue: 'ID Nieruchomiści' }
     ]
   }];
@@ -97,15 +115,31 @@ export class SearchComponent implements OnInit {
                     this.router.navigate(['firmy/edit/search/osoby'], { queryParams: { firma: this.firmaEdit, osoba: this.selectOsoba } });
                 else if (this.router.url.indexOf("firmy/add") > 0)
                     this.router.navigate(['firmy/add/search/osoby']);
+            } else if (this.router.url.indexOf("umowy") > 0) {
+                this.service.setSearchType(this.selectedValue2);
+                this.service.setKayWord(this.keyWord);
+                if (this.router.url.indexOf("umowy/edit") > 0)
+                    this.router.navigate(['umowy/edit/search/osoby'], { queryParams: { umowa: this.umowaEdit, kontrahent: this.selectKontrahent, nieruchomosc: this.selectNieruchomosc  } });
+                else if (this.router.url.indexOf("umowy/add") > 0)
+                    this.router.navigate(['umowy/add/search/osoby']);
             } else {
                 this.service.setSearchType(this.selectedValue2);
                 this.service.setKayWord(this.keyWord);
                 this.router.navigate(['search/osoby']);
             }
         } else if (this.selectedValue1 === 'nieruchomosci') {
-            this.service.setSearchType(this.selectedValue2);
-            this.service.setKayWord(this.keyWord);
-            this.router.navigate(['search/nieruchomosci']);
+            if (this.router.url.indexOf("umowy") > 0) {
+                this.service.setSearchType(this.selectedValue2);
+                this.service.setKayWord(this.keyWord);
+                if (this.router.url.indexOf("umowy/edit") > 0)
+                    this.router.navigate(['umowy/edit/search/nieruchomosci'], { queryParams: { umowa: this.umowaEdit, kontrahent: this.selectKontrahent, nieruchomosc: this.selectNieruchomosc } });
+                else if (this.router.url.indexOf("umowy/add") > 0)
+                    this.router.navigate(['umowy/add/search/nieruchomosci']);
+            } else {
+                this.service.setSearchType(this.selectedValue2);
+                this.service.setKayWord(this.keyWord);
+                this.router.navigate(['search/nieruchomosci']);
+            }
         } else if (this.selectedValue1 === 'firmy') {
             this.service.setSearchType(this.selectedValue2);
             this.service.setKayWord(this.keyWord);

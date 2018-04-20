@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -24,14 +24,16 @@ export class UmowyComponent implements OnInit {
     sqlQuery: string;
 
     selectSqlObiekty() {
-        // SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) as count FROM umowy JOIN osoby ON umowy.osoby_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id  WHERE umowy.id = 1;
+        // SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) as count FROM umowy JOIN osoby ON umowy.osoby_id = osoby.id 
+        // JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id  WHERE umowy.id = 1;
         if (this.router.url === "/umowy") {
-            this.sqlQuery = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu, (SELECT COUNT(*) FROM umowy) as count FROM umowy JOIN osoby ON umowy.osoby_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id LIMIT "
-                + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+            this.sqlQuery = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu, (SELECT COUNT(*) FROM umowy) as count FROM umowy "+
+            "JOIN osoby ON umowy.osoby_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id ORDER BY umowy.id LIMIT "
+                + (this.service.getNrPage() * this.countRows) + ", " + this.countRows ;
         } else {
             this.sqlQuery = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu, (SELECT COUNT(*) FROM umowy WHERE " + this.service.getSearchType() +
                 " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM umowy INNER JOIN osoby ON umowy.osoby_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id WHERE "
-                + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' LIMIT "
+                + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' ORDER BY umowy.id LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         }
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuery + '" }';
@@ -70,7 +72,7 @@ export class UmowyComponent implements OnInit {
         this.disabledNext = false;
     }
 
-    editUmowy(idUmowy, idOsoby, idNieruchomosci) {
-        this.router.navigate(['umowy/edit'], { queryParams: { umowa: idUmowy, osoba: idOsoby, nieruchomosc: idNieruchomosci } });
+    editUmowy(idUmowy, idkontrahent, idNieruchomosci) {
+        this.router.navigate(['umowy/edit'], { queryParams: { umowa: idUmowy, kontrahent: idkontrahent, nieruchomosc: idNieruchomosci } });
     }
 }

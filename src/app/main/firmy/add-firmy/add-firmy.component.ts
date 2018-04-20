@@ -15,7 +15,6 @@ export class AddFirmyComponent implements OnInit {
     ngOnInit() { }
 
     _confirm: string;
-    sqlQueryAdd: string;
     dataArray: any = [{
         osoby_id: "",
         nazwa: "",
@@ -54,27 +53,28 @@ export class AddFirmyComponent implements OnInit {
 
     saveAdd() {
         // Składanie zapytanie INSERT
+        let sqlQueryAdd: string;
         let arr: any = [];
-        this.sqlQueryAdd = "INSERT INTO firmy ( osoby_id, nazwa, nip, regon, telefon, email, ulica, nr_domu, gmina, kod_p, miasto, panstwo ) VALUES ( ";
+        sqlQueryAdd = "INSERT INTO firmy ( osoby_id, nazwa, nip, regon, telefon, email, ulica, nr_domu, gmina, kod_p, miasto, panstwo ) VALUES ( ";
         for (var prop in this.dataArray[0]) {
             if (Boolean(this.dataArray[0][prop]) && prop !== 'imie' && prop !== 'nazwisko') {
-                this.sqlQueryAdd = this.sqlQueryAdd + "'" + this.dataArray[0][prop] + "', ";
+                sqlQueryAdd = sqlQueryAdd + "'" + this.dataArray[0][prop] + "', ";
             } else if (!Boolean(this.dataArray[0][prop]) && prop !== 'imie' && prop !== 'nazwisko') {
-                this.sqlQueryAdd = this.sqlQueryAdd + "null, ";
+                sqlQueryAdd = sqlQueryAdd + "null, ";
             }
         }
-        this.sqlQueryAdd = this.sqlQueryAdd.slice(0, -2) + " ) ";
+        sqlQueryAdd = sqlQueryAdd.slice(0, -2) + " ) ";
         //------------SQL-------------
-        if (confirm("Czy na pewno dodać nową nieruchomość?!") == true) {
-            this._confirm = "Nowa nieruchomość została dodana.";
-            let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQueryAdd + '" }';
+        if (confirm("Czy na pewno dodać nową firmę?!") == true) {
+            this._confirm = "Nowa firma została dodana.";
+            let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQueryAdd + '" }';
             let jsonPost: JSON = JSON.parse(toPost);
             let _url: string = this.service.getConnectUrl();
             this._http.post(_url, jsonPost).subscribe((data) => {
                 //this.dataArray = data;
             })
         } else {
-            this._confirm = "Nie zapisano nowej nieruchomości.";
+            this._confirm = "Nie zapisano nowej firmy.";
         }
     }
 

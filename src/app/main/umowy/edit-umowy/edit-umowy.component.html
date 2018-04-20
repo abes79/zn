@@ -1,4 +1,4 @@
-<div class="edit">
+﻿<div class="edit">
   <h2>
     Edycja umowy z ID : {{umowaEdit}}
   </h2>
@@ -9,6 +9,22 @@
       <div class="left">
         <h3>Dane umowy</h3>
         <div>
+          <label>Typ</label>
+          <select [(ngModel)]="dataArray[0]['typ']" name="select1">
+            <option *ngFor="let opt1 of selectOption1" [ngValue]="opt1.value">
+              {{opt1.viewValue}}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label>Strona</label>
+          <select [(ngModel)]="dataArray[0]['strona']" name="select2">
+            <option *ngFor="let opt1 of selectOption2" [ngValue]="opt1.value">
+              {{opt1.viewValue}}
+            </option>
+          </select>
+        </div>
+        <div>
           <label>Kontrahent</label><br />
           <input class="disabled" type="text" value="{{dataArray[0]['imie']}} {{dataArray[0]['nazwisko']}}" disabled />
           <button class="button" type="button" (click)="selectAnotherPerson()"><span>Zmień Osobę</span></button>
@@ -17,14 +33,6 @@
           <label>Nieruchomość</label><br />
           <input class="disabled" type="text" value="{{dataArray[0]['ulica']}} {{dataArray[0]['nr_domu']}}" disabled />
           <button class="button" type="button" (click)="selectAnotherProperty()"><span>Zmień Obiekt</span></button>
-        </div>
-        <div>
-          <label>Typ</label>
-          <input type="text" name="typ" maxlength="10" [(ngModel)]="dataArray[0]['typ']" />
-        </div>
-        <div>
-          <label>Strona</label>
-          <input type="text" name="strna" maxlength="10" [(ngModel)]="dataArray[0]['strona']" />
         </div>
         <div>
           <label>Data Od</label>
@@ -58,7 +66,7 @@
           <input type="text" name="prowizja" maxlength="5" [(ngModel)]="dataArray[0]['prowizja']" />
         </div>
         <div>
-          <label>Zalacznik</label><br />
+          <label>Załącznik</label><br />
           <input type="text" name="zalacznik" maxlength="45" [(ngModel)]="dataArray[0]['zalacznik']" disabled />
         </div>
       </div>

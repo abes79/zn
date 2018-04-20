@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Router, Routes, RouterModule } from '@angular/router';
 
 import { AppService } from './app.service';
@@ -96,12 +96,50 @@ const appRoutes: Routes = [
         {
             path: 'umowy/add',
             canActivate: [AuthGuard],
-            component: AddUmowyComponent
+            component: AddUmowyComponent,
+            children: [
+                {
+                    path: 'search',
+                    canActivate: [AuthGuard],
+                    component: SearchComponent,
+                    children: [
+                        {
+                            path: 'osoby',
+                            canActivate: [AuthGuard],
+                            component: OsobyComponent
+                        },
+                        {
+                            path: 'nieruchomosci',
+                            canActivate: [AuthGuard],
+                            component: ObiektyComponent
+                        }
+                    ]
+                }
+            ]
         },
         {
             path: 'umowy/edit',
             canActivate: [AuthGuard],
-            component: EditUmowyComponent
+            component: EditUmowyComponent,
+            children: [
+                {
+                    path: 'search',
+                    canActivate: [AuthGuard],
+                    component: SearchComponent,
+                    children: [
+                        {
+                            path: 'osoby',
+                            canActivate: [AuthGuard],
+                            component: OsobyComponent
+                        },
+                        {
+                            path: 'nieruchomosci',
+                            canActivate: [AuthGuard],
+                            component: ObiektyComponent
+                        }
+                    ]
+                }
+            ]
         },
         {
             path: 'osoby/add',
@@ -116,40 +154,12 @@ const appRoutes: Routes = [
         {
             path: 'nieruchomosci/add',
             canActivate: [AuthGuard],
-            component: AddObiektyComponent,
-            children: [
-              {
-                path: 'search',
-                canActivate: [AuthGuard],
-                component: SearchComponent,
-                children: [
-                  {
-                    path: 'osoby',
-                    canActivate: [AuthGuard],
-                    component: OsobyComponent
-                  }
-                ]
-              }
-            ]
+            component: AddObiektyComponent
         },
         {
             path: 'nieruchomosci/edit',
             canActivate: [AuthGuard],
-            component: EditObiektyComponent,
-            children: [
-              {
-                path: 'search',
-                canActivate: [AuthGuard],
-                component: SearchComponent,
-                children: [
-                  {
-                    path: 'osoby',
-                    canActivate: [AuthGuard],
-                    component: OsobyComponent
-                  }
-                ]
-              }
-            ]
+            component: EditObiektyComponent
         },
         {
             path: 'firmy/add',

@@ -1,6 +1,6 @@
 ﻿<div class="search">
   <h2>
-    Wyszukiwanie {{wyszukiwanie}}
+    Wyszukiwanie {{wyszukiwanieInfo}}
   </h2>
   <div class="warn"></div>
   <div class="form">
@@ -26,15 +26,9 @@
         </div>
         <div class="clear"></div>
         <br />
-        <div *ngIf="wyszukaj">
-          <button class="button" type="submit" [routerLink]="['/search']"><span>Wyszukaj</span></button>
+        <div>
+          <button class="button" type="submit" [routerLink]="routerLink" [queryParams]="{firma: firmaEdit, osoba: selectOsoba, umowa: umowaEdit, kontrahent: selectKontrahent, nieruchomosc: selectNieruchomosc }"><span>Wyszukaj</span></button>
         </div>
-        <div *ngIf="filtrujEdit">
-          <button class="button" type="submit" [routerLink]="['/firmy/edit/search']" [queryParams]="{firma: firmaEdit, osoba: selectOsoba}"><span>Filtruj</span></button>
-        </div>
-      <div *ngIf="filtrujAdd">
-        <button class="button" type="submit" [routerLink]="['/firmy/add/search']"><span>Filtruj</span></button>
-      </div>
     </form>
   </div>
 
