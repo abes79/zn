@@ -28,7 +28,7 @@ export class EditUmowyComponent implements OnInit {
   ];
   dataArray: any = [{
     id: "",
-    osoby_id: "",
+    kontrahent_id: "",
     nieruchomosci_id: "",
     typ: "",
     strona: "",
@@ -78,7 +78,7 @@ export class EditUmowyComponent implements OnInit {
               //}
           });
       sqlQuerySelect = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu FROM umowy, osoby, nieruchomosci WHERE umowy.id = "+
-          this.umowaEdit +" AND osoby.id = "+ this.dataArray[0].osoby_id + " AND nieruchomosci.id = " + this.dataArray[0].nieruchomosci_id;
+          this.umowaEdit + " AND osoby.id = " + this.dataArray[0].kontrahent_id + " AND nieruchomosci.id = " + this.dataArray[0].nieruchomosci_id;
       let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQuerySelect + '" }';
       let jsonPost: JSON = JSON.parse(toPost);
       let _url: string = this.service.getConnectUrl();

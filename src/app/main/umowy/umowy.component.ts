@@ -24,17 +24,34 @@ export class UmowyComponent implements OnInit {
     sqlQuery: string;
 
     selectSqlObiekty() {
-        // SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) as count FROM umowy JOIN osoby ON umowy.osoby_id = osoby.id 
-        // JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id  WHERE umowy.id = 1;
+        //SELECT u.*, CONCAT(osoby.imie, ' ', osoby.nazwisko) as nazwa, nieruchomosci.ulica
+        //FROM umowy AS u
+        //JOIN osoby ON u.kontrahent_id = osoby.id
+        //JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id
+        //WHERE u.strona LIKE 'osoba'
+        //UNION
+        //SELECT u.*, firmy.nazwa as nazwa, nieruchomosci.ulica
+        //FROM umowy AS u
+        //JOIN firmy ON u.kontrahent_id = firmy.id
+        //JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id
+        //WHERE u.strona LIKE 'firma'
+        //LIMIT 0 , 5
         if (this.router.url === "/umowy") {
-            this.sqlQuery = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu, (SELECT COUNT(*) FROM umowy) as count FROM umowy "+
-            "JOIN osoby ON umowy.osoby_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id ORDER BY umowy.id LIMIT "
+            this.sqlQuery = "SELECT u.*, CONCAT(osoby.imie, ' ', osoby.nazwisko) as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) AS count FROM umowy AS u "+
+                "JOIN osoby ON u.kontrahent_id = osoby.id JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id WHERE u.strona LIKE 'osoba' UNION " +
+                "SELECT u.*, firmy.nazwa as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) AS count FROM umowy AS u " +
+                "JOIN firmy ON u.kontrahent_id = firmy.id JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id WHERE u.strona LIKE 'firma' LIMIT "
                 + (this.service.getNrPage() * this.countRows) + ", " + this.countRows ;
         } else {
-            this.sqlQuery = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu, (SELECT COUNT(*) FROM umowy WHERE " + this.service.getSearchType() +
-                " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM umowy INNER JOIN osoby ON umowy.osoby_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id WHERE "
-                + this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' ORDER BY umowy.id LIMIT "
-                + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+            this.sqlQuery = "SELECT umowy.*, CONCAT(osoby.imie, ' ', osoby.nazwisko) as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy WHERE " +
+                this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM umowy  " +
+                "JOIN osoby ON umowy.kontrahent_id = osoby.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id WHERE umowy.strona LIKE 'osoba' AND " +
+                this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' UNION " +
+                "SELECT umowy.*, firmy.nazwa as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy WHERE " +
+                this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM umowy  " +
+                "JOIN firmy ON umowy.kontrahent_id = firmy.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id WHERE umowy.strona LIKE 'firma' AND "+
+                this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' "+
+                "LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         }
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuery + '" }';
         let jsonPost: JSON = JSON.parse(toPost);

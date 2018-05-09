@@ -112,6 +112,11 @@ const appRoutes: Routes = [
                             path: 'nieruchomosci',
                             canActivate: [AuthGuard],
                             component: ObiektyComponent
+                        },
+                        {
+                            path: 'firmy',
+                            canActivate: [AuthGuard],
+                            component: FirmyComponent
                         }
                     ]
                 }
@@ -136,6 +141,11 @@ const appRoutes: Routes = [
                             path: 'nieruchomosci',
                             canActivate: [AuthGuard],
                             component: ObiektyComponent
+                        },
+                        {
+                            path: 'firmy',
+                            canActivate: [AuthGuard],
+                            component: FirmyComponent
                         }
                     ]
                 }

@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../app.service';
+import { AddUmowyComponent } from './../umowy/add-umowy/add-umowy.component';
+import { EditUmowyComponent } from './../umowy/edit-umowy/edit-umowy.component';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-firmy',
@@ -10,12 +12,17 @@ import { Router } from '@angular/router';
 })
 export class FirmyComponent implements OnInit {
 
-    constructor(private router: Router, private _http: HttpClient, private service: AppService) { }
+    constructor(private router: Router, private route: ActivatedRoute, private _http: HttpClient, private service: AppService,
+        private addUmowy: AddUmowyComponent, private editUmowy: EditUmowyComponent) { }
     ngOnInit() {
         this.service.setNrPage(0);
         this.selectSqlObiekty();
+        if (this.router.url.indexOf("umowy") > 0)
+            this.select = true;
+        else
+            this.select = false;
     }
-
+    select: boolean;
     dataArray: any = [];
     countPages: number;
     countRows: number = 5;
@@ -72,5 +79,26 @@ export class FirmyComponent implements OnInit {
 
     editObiekt(idObiektu, idOsoby) {
         this.router.navigate(['firmy/edit'], { queryParams: { firma: idObiektu, osoba: idOsoby } });
+    }
+
+    selectCompany(idFirmy) {
+        let firmaEdit;
+        let umowaEdit;
+        let selectNieruchomosc;
+        this.route
+            .queryParams
+            .subscribe(params => {
+                firmaEdit = params['firma'];
+                umowaEdit = params['umowa'];
+                selectNieruchomosc = params['nieruchomosc'];
+            });
+        if (this.router.url.indexOf("umowy/add") > 0)
+            this.router.navigate(['umowy/add'], { queryParams: { kontrahent: idFirmy, nieruchomosc: selectNieruchomosc } }).then(() => {
+                this.addUmowy.selectSqlObiekty();
+            });
+        else if (this.router.url.indexOf("umowy/edit") > 0)
+            this.router.navigate(['umowy/edit'], { queryParams: { umowa: umowaEdit, kontrahent: idFirmy, nieruchomosc: selectNieruchomosc } }).then(() => {
+                this.editUmowy.selectSqlObiekty();
+            });
     }
 }
