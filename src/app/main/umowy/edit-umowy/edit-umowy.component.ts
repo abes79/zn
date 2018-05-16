@@ -17,7 +17,7 @@ export class EditUmowyComponent implements OnInit {
   }
 
   _confirm: string;
-  umowaEdit: number;
+  strona: string;
   selectOption1 = [
       { value: 'najem', viewValue: 'Najem' },
       { value: 'wynajem', viewValue: 'Wynajem' }
@@ -48,44 +48,29 @@ export class EditUmowyComponent implements OnInit {
       this.route
           .queryParams
           .subscribe(params => {
-              this.umowaEdit = params['umowa'];
+              this.dataArray[0].id = params['umowa'];
               if (params['kontrahent'] > 0)
-                  this.dataArray[0].osoby_id = params['kontrahent'];
+                  this.dataArray[0].kontrahent_id = params['kontrahent'];
               if (params['nieruchomosc'] > 0)
                   this.dataArray[0].nieruchomosci_id = params['nieruchomosc'];
-              //if (params['kontrahent'] > 0) {
-              //    this.dataArray[0].osoby_id = params['kontrahent'];
-              //    sqlQuerySelect = "SELECT imie, nazwisko FROM osoby WHERE osoby.id = " + this.dataArray[0].osoby_id;
-              //    let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQuerySelect + '" }';
-              //    let jsonPost: JSON = JSON.parse(toPost);
-              //    let _url: string = this.service.getConnectUrl();
-              //    this._http.post(_url, jsonPost
-              //    ).subscribe((data) => {
-              //        this.dataArray[0].imie = data[0].imie;
-              //        this.dataArray[0].nazwisko = data[0].nazwisko;
-              //    })
-              //} else if (params['nieruchomosc'] > 0) {
-              //    this.dataArray[0].nieruchomosci_id = params['nieruchomosc'];
-              //    sqlQuerySelect = "SELECT ulica, nr_domu FROM nieruchomosci WHERE nieruchomosci.id = " + params['nieruchomosc'];
-              //    let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQuerySelect + '" }';
-              //    let jsonPost: JSON = JSON.parse(toPost);
-              //    let _url: string = this.service.getConnectUrl();
-              //    this._http.post(_url, jsonPost
-              //    ).subscribe((data) => {
-              //        this.dataArray[0].ulica = data[0].ulica;
-              //        this.dataArray[0].nr_domu = data[0].nr_domu;
-              //    })
-              //}
+              if (params['strona'])
+                  this.strona = params['strona'];
           });
-      sqlQuerySelect = "SELECT umowy.*, osoby.imie, osoby.nazwisko, nieruchomosci.ulica, nieruchomosci.nr_domu FROM umowy, osoby, nieruchomosci WHERE umowy.id = "+
-          this.umowaEdit + " AND osoby.id = " + this.dataArray[0].kontrahent_id + " AND nieruchomosci.id = " + this.dataArray[0].nieruchomosci_id;
+      if (this.strona === 'osoba') {
+          sqlQuerySelect = "SELECT umowy.*, CONCAT(osoby.imie, ' ', osoby.nazwisko) AS nazwa, nieruchomosci.ulica, nieruchomosci.nr_domu FROM umowy, osoby, nieruchomosci WHERE umowy.id = " +
+              this.dataArray[0].id + " AND osoby.id = " + this.dataArray[0].kontrahent_id + " AND nieruchomosci.id = " + this.dataArray[0].nieruchomosci_id;
+      } else if (this.strona === 'firma') {
+          sqlQuerySelect = "SELECT umowy.*, firmy.nazwa AS nazwa, nieruchomosci.ulica, nieruchomosci.nr_domu FROM umowy, firmy, nieruchomosci WHERE umowy.id = " +
+              this.dataArray[0].id + " AND firmy.id = " + this.dataArray[0].kontrahent_id + " AND nieruchomosci.id = " + this.dataArray[0].nieruchomosci_id;
+      }
       let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + sqlQuerySelect + '" }';
       let jsonPost: JSON = JSON.parse(toPost);
       let _url: string = this.service.getConnectUrl();
       this._http.post(_url, jsonPost
       ).subscribe((data) => {
           this.dataArray = data;
-      })
+          this.dataArray[0].strona = this.strona;
+          })
   }
 
   saveEdit() {
@@ -93,15 +78,15 @@ export class EditUmowyComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
-        this.dataArray[0].osoby_id = params['kontrahent'];
+        this.dataArray[0].kontrahent_id = params['kontrahent'];
         this.dataArray[0].nieruchomosci_id = params['nieruchomosc'];
       });
     let arr: any = [];
     let sqlQueryUpdate = "UPDATE umowy SET ";
     for (var prop in this.dataArray[0]) {
-      if (Boolean(this.dataArray[0][prop]) && prop !== 'id' && prop !== 'imie' && prop !== 'nazwisko' && prop !== 'ulica' && prop !== 'nr_domu') {
+      if (Boolean(this.dataArray[0][prop]) && prop !== 'id' && prop !== 'nazwa' && prop !== 'ulica' && prop !== 'nr_domu') {
         sqlQueryUpdate = sqlQueryUpdate + prop + " ='" + this.dataArray[0][prop] + "', ";
-      } else if (!Boolean(this.dataArray[0][prop]) && prop !== 'imie' && prop !== 'nazwisko' && prop !== 'ulica' && prop !== 'nr_domu') {
+      } else if (!Boolean(this.dataArray[0][prop]) && prop !== 'nazwa' && prop !== 'ulica' && prop !== 'nr_domu') {
         sqlQueryUpdate = sqlQueryUpdate + prop + " = null, ";
       }
     }
@@ -121,10 +106,14 @@ export class EditUmowyComponent implements OnInit {
   }
 
   selectAnotherPerson() {
-      this.router.navigate(['umowy/edit/search'], { queryParams: { umowa: this.umowaEdit, kontrahent: this.dataArray[0].osoby_id, nieruchomosc: this.dataArray[0].nieruchomosci_id, search: 'person' } });
+      this.strona = this.dataArray[0].strona;
+      if (this.dataArray[0].strona === 'osoba')
+          this.router.navigate(['umowy/edit/search'], { queryParams: { umowa: this.dataArray[0].id, kontrahent: this.dataArray[0].kontrahent_id, nieruchomosc: this.dataArray[0].nieruchomosci_id, search: 'person' } });
+      else if (this.dataArray[0].strona === 'firma')
+          this.router.navigate(['umowy/edit/search'], { queryParams: { umowa: this.dataArray[0].id, kontrahent: this.dataArray[0].kontrahent_id, nieruchomosc: this.dataArray[0].nieruchomosci_id, search: 'company' } });
   }
 
   selectAnotherProperty() {
-      this.router.navigate(['umowy/edit/search'], { queryParams: { umowa: this.umowaEdit, kontrahent: this.dataArray[0].osoby_id, nieruchomosc: this.dataArray[0].nieruchomosci_id, search: 'property' } });
+      this.router.navigate(['umowy/edit/search'], { queryParams: { umowa: this.dataArray[0].id, kontrahent: this.dataArray[0].osoby_id, nieruchomosc: this.dataArray[0].nieruchomosci_id, search: 'property' } });
   }
 }

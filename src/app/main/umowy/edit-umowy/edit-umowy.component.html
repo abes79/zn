@@ -1,6 +1,6 @@
 ﻿<div class="edit">
   <h2>
-    Edycja umowy z ID : {{umowaEdit}}
+    Edycja umowy z ID : {{dataArray[0]['id']}}
   </h2>
   <div class="warn">{{_confirm}}</div>
 
@@ -26,8 +26,8 @@
         </div>
         <div>
           <label>Kontrahent</label><br />
-          <input class="disabled" type="text" value="{{dataArray[0]['imie']}} {{dataArray[0]['nazwisko']}}" disabled />
-          <button class="button" type="button" (click)="selectAnotherPerson()"><span>Zmień Kontrahenta</span></button>
+          <input class="disabled" type="text" value="{{dataArray[0]['nazwa']}}" disabled />
+          <button class="button" type="button" (click)="selectAnotherPerson()"><span>Inny Kontrahent</span></button>
         </div>
         <div>
           <label>Nieruchomość</label><br />

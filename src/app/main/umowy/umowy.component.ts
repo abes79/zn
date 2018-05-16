@@ -35,13 +35,14 @@ export class UmowyComponent implements OnInit {
         //JOIN firmy ON u.kontrahent_id = firmy.id
         //JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id
         //WHERE u.strona LIKE 'firma'
+        //ORDER BY 1
         //LIMIT 0 , 5
         if (this.router.url === "/umowy") {
             this.sqlQuery = "SELECT u.*, CONCAT(osoby.imie, ' ', osoby.nazwisko) as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) AS count FROM umowy AS u "+
                 "JOIN osoby ON u.kontrahent_id = osoby.id JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id WHERE u.strona LIKE 'osoba' UNION " +
                 "SELECT u.*, firmy.nazwa as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy) AS count FROM umowy AS u " +
-                "JOIN firmy ON u.kontrahent_id = firmy.id JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id WHERE u.strona LIKE 'firma' LIMIT "
-                + (this.service.getNrPage() * this.countRows) + ", " + this.countRows ;
+                "JOIN firmy ON u.kontrahent_id = firmy.id JOIN nieruchomosci ON u.nieruchomosci_id = nieruchomosci.id WHERE u.strona LIKE 'firma' ORDER BY id LIMIT "
+                + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         } else {
             this.sqlQuery = "SELECT umowy.*, CONCAT(osoby.imie, ' ', osoby.nazwisko) as nazwa, nieruchomosci.ulica, (SELECT COUNT(*) FROM umowy WHERE " +
                 this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM umowy  " +
@@ -51,7 +52,7 @@ export class UmowyComponent implements OnInit {
                 this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' ) as count FROM umowy  " +
                 "JOIN firmy ON umowy.kontrahent_id = firmy.id JOIN nieruchomosci ON umowy.nieruchomosci_id = nieruchomosci.id WHERE umowy.strona LIKE 'firma' AND "+
                 this.service.getSearchType() + " LIKE '%" + this.service.getKayWord() + "%' "+
-                "LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
+                " ORDER BY id LIMIT " + (this.service.getNrPage() * this.countRows) + ", " + this.countRows;
         }
         let toPost: string = '{ "sqlRequest" : "10", "sqlQuery" : "' + this.sqlQuery + '" }';
         let jsonPost: JSON = JSON.parse(toPost);
@@ -89,7 +90,7 @@ export class UmowyComponent implements OnInit {
         this.disabledNext = false;
     }
 
-    editUmowy(idUmowy, idkontrahent, idNieruchomosci) {
-        this.router.navigate(['umowy/edit'], { queryParams: { umowa: idUmowy, kontrahent: idkontrahent, nieruchomosc: idNieruchomosci } });
+    editUmowy(idUmowy, idkontrahent, strona, idNieruchomosci) {
+        this.router.navigate(['umowy/edit'], { queryParams: { umowa: idUmowy, kontrahent: idkontrahent, strona: strona, nieruchomosc: idNieruchomosci } });
     }
 }

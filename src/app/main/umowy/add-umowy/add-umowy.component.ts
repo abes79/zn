@@ -82,7 +82,7 @@ export class AddUmowyComponent implements OnInit {
       // Składanie zapytanie INSERT
       let sqlQueryAdd: string;
       let arr: any = [];
-      sqlQueryAdd = "INSERT INTO umowy ( osoby_id, nieruchomosci_id, typ, strona, czas_od, czas_do, kwota, bank, czynsz, media, prowizja, zalacznik ) VALUES ( ";
+      sqlQueryAdd = "INSERT INTO umowy ( kontrahent_id, nieruchomosci_id, typ, strona, czas_od, czas_do, kwota, bank, czynsz, media, prowizja, zalacznik ) VALUES ( ";
       for (var prop in this.dataArray[0]) {
           if (Boolean(this.dataArray[0][prop]) && prop !== 'imie' && prop !== 'nazwisko' && prop !== 'nazwa' && prop !== 'ulica' && prop !== 'nr_domu') {
               sqlQueryAdd = sqlQueryAdd + "'" + this.dataArray[0][prop] + "', ";
